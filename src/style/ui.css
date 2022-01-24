@@ -1,0 +1,43 @@
+.div-tb {
+  @apply inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg;
+}
+
+.tb-td {
+  @apply px-2 py-1 text-left border-b;
+}
+
+.tb {
+  @apply px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-blue-500;
+}
+
+.btn {
+  @apply inline-flex items-center block text-white uppercase rounded;
+}
+
+.btn-md {
+  @apply pl-2 pr-2 text-sm h-9;
+}
+
+.btn-sm {
+  @apply p-2 text-xs;
+}
+
+.btn-green {
+  @apply bg-green-500;
+}
+
+.btn-green:hover {
+  @apply bg-green-600;
+}
+
+.btn-gray {
+  @apply bg-gray-500;
+}
+
+.btn-gray:hover {
+  @apply bg-gray-600;
+}
+
+.field-input {
+  @apply w-full px-2 py-1 text-gray-600 border border-gray-400 rounded outline-none h-9 focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
+}
