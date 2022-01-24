@@ -1,4 +1,4 @@
-import PrivateLayout from "../layouts/private/PrivateLayout";
+import PrivateLayout from "../layout/PrivateLayout";
 
 //private
 import MainUser from "../views/private/users/MainUser";
