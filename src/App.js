@@ -1,27 +1,43 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import "./style/tailwind.css";
+import React, { Component } from "react";
+import { BrowserRouter, Switch } from "react-router-dom";
+import Routes from "./routes/Routes";
+import SwitchRoute from "./layouts/SwitchLayout";
+import { nanoid } from "nanoid";
+import "./styles/tailwind.css";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className="text-red-800">
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          {Routes.filter(
+            (a) =>
+              a.role ===
+              (this.props.auth.users && this.props.auth.users !== "undefined"
+                ? 1
+                : 0)
+          ).map((prop) => {
+            return (
+              <SwitchRoute
+                exact
+                path={prop.path}
+                component={prop.component}
+                layout={prop.layout}
+                key={nanoid()}
+                {...this.props}
+                pathNameTH={prop.name}
+              />
+            );
+          })}
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  auth: state.Authentication,
+});
+
+export default connect(mapStateToProps)(App);
