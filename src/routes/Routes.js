@@ -8,7 +8,7 @@ const Routes = [
     name: "ข้อมูลผู้ใช้งาน",
     component: MainUser,
     role: 0,
-    layout: PublicLayout,
+    layout: PrivateLayout,
   },
 ];
 export default Routes;
