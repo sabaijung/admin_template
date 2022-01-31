@@ -19,6 +19,24 @@ export default function FormUser() {
         </div>
       </div>
       <div className="mt-2 bg-white border-b border-l border-r border-gray-400" />
+
+      <div className="mt-2 flex flex-wrap justify-between">
+        <div className="pr-3 md:w-1/4">
+          <label className="field-label">รูปโปรไฟล์</label>
+          <div className="flex items-center justify-center w-full">
+            <label className="flex flex-col w-full border-2 border-gray-200 border-dashed rounded-md h-60 hover:bg-gray-50 hover:border-gray-300">
+              <div className="flex flex-col items-center justify-center pt-7">
+                <img
+                  alt=""
+                  src=""
+                  className="w-40 h-40 rounded-full"
+                  onError=""
+                />
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
