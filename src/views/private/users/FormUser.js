@@ -1,7 +1,7 @@
 import React from "react";
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
-import TextSelect from "../../../components/TextSelect";
+// import TextSelect from "../../../components/TextSelect";
 
 export default function FormUser() {
   return (
@@ -39,7 +39,7 @@ export default function FormUser() {
         </div>
         <div className="flex flex-wrap justify-between md:w-3/4">
           <div className="pr-2 mt-2 md:w-2/12">
-            <TextSelect
+            {/* <TextSelect
               title="คำนำหน้า"
               options=""
               onChange=""
@@ -49,7 +49,7 @@ export default function FormUser() {
               placeholder="คำนำหน้า"
               onBlur=""
               value=""
-            />
+            /> */}
           </div>
         </div>
       </div>
