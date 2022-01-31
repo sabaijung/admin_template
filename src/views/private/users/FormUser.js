@@ -43,18 +43,7 @@ export default function FormUser() {
                 </div>
               </div>
               <div className="flex flex-wrap justify-between md:w-3/4">
-                <div className="pr-2 mt-2 md:w-2/12">
-                  {/* <TextSelect
-                    title="คำนำหน้า"
-                    options=""
-                    onChange=""
-                    getOptionLabel=""
-                    getOptionValue=""
-                    name="prefix"
-                    placeholder="คำนำหน้า"
-                    onBlur=""
-                    value=""
-                  /> */}
+                <div className="pr-2 mt-2 md:w-1/5">
                   <TextField
                     title="คำนำหน้าชื่อ"
                     name="prefix"
@@ -63,7 +52,7 @@ export default function FormUser() {
                     value=""
                   />
                 </div>
-                <div className="pr-2 mt-2 md:w-5/12">
+                <div className="pr-2 mt-2 md:w-2/5">
                   <TextField
                     name="firstName"
                     title="ชื่อ"
@@ -72,7 +61,7 @@ export default function FormUser() {
                     value=""
                   />
                 </div>
-                <div className="pr-2 mt-2 md:w-5/12">
+                <div className="pr-2 mt-2 md:w-2/5">
                   <TextField
                     title="นามสกุล"
                     name="lastName"
@@ -81,8 +70,8 @@ export default function FormUser() {
                     value=""
                   />
                 </div>
-                <div className="flex justify-start w-full">
-                  <div className="pr-2 mt-2 md:w-2/12">
+                <div className="flex flex-wrap justify-start w-full">
+                  <div className="pr-2 mt-2 md:w-1/3">
                     <TextField
                       title="แผนก"
                       name="department"
@@ -91,7 +80,7 @@ export default function FormUser() {
                       value=""
                     />
                   </div>
-                  <div className="pr-2 mt-2 md:w-5/12">
+                  <div className="pr-2 mt-2 md:w-1/3">
                     <TextField
                       name="position"
                       title="ตำแหน่ง"
@@ -100,13 +89,73 @@ export default function FormUser() {
                       value=""
                     />
                   </div>
-                  <div className="pr-2 mt-2 md:w-5/12">
+                  <div className="pr-2 mt-2 md:w-1/3">
                     <TextField
                       title="เบอร์โทรศัพท์มือถือ"
                       name="mobilephone"
                       type="text"
                       onChange=""
                       value=""
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap justify-start w-full">
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <TextField
+                      title="ที่อยู่"
+                      name="address"
+                      type="text"
+                      onChange=""
+                      onBlur=""
+                      value=""
+                    />
+                  </div>
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <TextField
+                      onChange=""
+                      onBlur=""
+                      type="text"
+                      name="zipCode"
+                      value=""
+                      title="จังหวัด"
+                      maxLength="5"
+                      readOnly
+                    />
+                  </div>
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <TextField
+                      onChange=""
+                      onBlur=""
+                      type="text"
+                      name="zipCode"
+                      value=""
+                      title="อำเภอ"
+                      maxLength="5"
+                      readOnly
+                    />
+                  </div>
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <TextField
+                      onChange=""
+                      onBlur=""
+                      type="text"
+                      name="zipCode"
+                      value=""
+                      title="ตำบล"
+                      maxLength="5"
+                      readOnly
+                    />
+                  </div>
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <TextField
+                      onChange=""
+                      onBlur=""
+                      type="text"
+                      name="zipCode"
+                      value=""
+                      title="รหัสไปรษณีย์"
+                      maxLength="5"
+                      readOnly
                     />
                   </div>
                 </div>
