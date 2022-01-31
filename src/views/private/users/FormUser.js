@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
-// import TextSelect from "../../../components/TextSelect";
+//import TextSelect from "../../../components/TextSelect";
 import { TextField } from "../../../components/TextField";
 
 export default function FormUser() {
@@ -45,21 +45,37 @@ export default function FormUser() {
               <div className="flex flex-wrap justify-between md:w-3/4">
                 <div className="pr-2 mt-2 md:w-2/12">
                   {/* <TextSelect
-              title="คำนำหน้า"
-              options=""
-              onChange=""
-              getOptionLabel=""
-              getOptionValue=""
-              name="prefix"
-              placeholder="คำนำหน้า"
-              onBlur=""
-              value=""
-            /> */}
+                    title="คำนำหน้า"
+                    options=""
+                    onChange=""
+                    getOptionLabel=""
+                    getOptionValue=""
+                    name="prefix"
+                    placeholder="คำนำหน้า"
+                    onBlur=""
+                    value=""
+                  /> */}
+                  <TextField
+                    title="คำนำหน้าชื่อ"
+                    name="prefix"
+                    type="text"
+                    onChange=""
+                    value=""
+                  />
                 </div>
                 <div className="pr-2 mt-2 md:w-5/12">
                   <TextField
                     name="firstName"
                     title="ชื่อ"
+                    type="text"
+                    onChange=""
+                    value=""
+                  />
+                </div>
+                <div className="pr-2 mt-2 md:w-5/12">
+                  <TextField
+                    title="นามสกุล"
+                    name="lastName"
                     type="text"
                     onChange=""
                     value=""
