@@ -81,6 +81,35 @@ export default function FormUser() {
                     value=""
                   />
                 </div>
+                <div className="flex justify-start w-full">
+                  <div className="pr-2 mt-2 md:w-2/12">
+                    <TextField
+                      title="แผนก"
+                      name="department"
+                      type="text"
+                      onChange=""
+                      value=""
+                    />
+                  </div>
+                  <div className="pr-2 mt-2 md:w-5/12">
+                    <TextField
+                      name="position"
+                      title="ตำแหน่ง"
+                      type="text"
+                      onChange=""
+                      value=""
+                    />
+                  </div>
+                  <div className="pr-2 mt-2 md:w-5/12">
+                    <TextField
+                      title="เบอร์โทรศัพท์มือถือ"
+                      name="mobilephone"
+                      type="text"
+                      onChange=""
+                      value=""
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
