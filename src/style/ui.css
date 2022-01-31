@@ -41,3 +41,7 @@
 .field-input {
   @apply w-full px-2 py-1 text-gray-600 border border-gray-400 rounded outline-none h-9 focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
 }
+
+.field-label {
+  @apply text-gray-700 uppercase;
+}
