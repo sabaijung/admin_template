@@ -2,6 +2,7 @@ import React from "react";
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 // import TextSelect from "../../../components/TextSelect";
+import { TextField } from "../../../components/TextField";
 
 export default function FormUser() {
   return (
@@ -50,6 +51,15 @@ export default function FormUser() {
               onBlur=""
               value=""
             /> */}
+          </div>
+          <div className="pr-2 mt-2 md:w-5/12">
+            <TextField
+              name="firstName"
+              title="ชื่อ"
+              type="text"
+              onChange=""
+              value=""
+            />
           </div>
         </div>
       </div>
