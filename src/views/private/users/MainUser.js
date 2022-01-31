@@ -3,8 +3,11 @@ import ShowUser from "./ShowUser";
 import SVGAdd from "../../../assets/svg/SVGAdd";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import SVGSearch from "../../../assets/svg/SVGSearch";
+import { useHistory } from "react-router";
 
 export default function MainUser() {
+  const history = useHistory();
+
   return (
     <div>
       <div className="flex flex-wrap mx-auto">
@@ -14,7 +17,12 @@ export default function MainUser() {
           </h4>
         </div>
         <div className="w-full pr-2 mb-2 text-right md:w-1/2">
-          <button className="mr-1 btn btn-green btn-sm">
+          <button
+            className="mr-1 btn btn-green btn-sm"
+            onClick={() => {
+              history.push("/MainUser/FormUser");
+            }}
+          >
             {" "}
             <SVGAdd color="white" /> &nbsp;เพิ่มใหม่
           </button>

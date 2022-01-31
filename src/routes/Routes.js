@@ -2,6 +2,8 @@ import PrivateLayout from "../layout/PrivateLayout";
 
 //private
 import MainUser from "../views/private/users/MainUser";
+import FormUser from "../views/private/users/FormUser";
+
 const Routes = [
   {
     path: "/",
@@ -10,5 +12,20 @@ const Routes = [
     role: 0,
     layout: PrivateLayout,
   },
+  {
+    path: "/MainUser",
+    name: "ข้อมูลผู้ใช้งาน",
+    component: MainUser,
+    role: 0,
+    layout: PrivateLayout,
+  },
+  {
+    path: "/MainUser/FormUser",
+    name: "เพิ่มข้อมูลผู้ใช้งาน",
+    component: FormUser,
+    role: 0,
+    layout: PrivateLayout,
+  },
 ];
+
 export default Routes;

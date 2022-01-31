@@ -11,13 +11,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          {Routes.filter(
-            (a) =>
-              a.role ===
-              (this.props.auth.users && this.props.auth.users !== "undefined"
-                ? 1
-                : 0)
-          ).map((prop) => {
+          {Routes.map((prop) => {
             return (
               <SwitchRoute
                 exact
@@ -26,7 +20,6 @@ class App extends Component {
                 layout={prop.layout}
                 key={nanoid()}
                 {...this.props}
-                pathNameTH={prop.name}
               />
             );
           })}

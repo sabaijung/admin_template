@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import MainUser from "../views/private/users/MainUser";
+import FormUser from "../views/private/users/FormUser";
+import { Route, Switch } from "react-router-dom";
 
 export default function PrivateLayout() {
   return (
@@ -14,7 +16,12 @@ export default function PrivateLayout() {
           style={{ minHeight: "calc(120vh - 300px)" }}
           className="p-4 break-words bg-white rounded-md shadow-xl"
         >
-          <MainUser />
+          <Switch>
+            <Route exact path="/" component={MainUser} />
+            <Route path="/MainUser/FormUser" component={FormUser} />
+          </Switch>
+          {/* <MainUser /> */}
+          {/* {children} */}
         </div>
       </section>
       <Footer />
