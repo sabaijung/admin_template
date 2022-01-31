@@ -1,4 +1,5 @@
 import React from "react";
+import SVGSave from "../../../assets/svg/SVGSave";
 
 export default function FormUser() {
   return (
@@ -6,6 +7,11 @@ export default function FormUser() {
       <div className="flex flex-wrap mx-auto">
         <div className="w-full pr-2 md:w-1/2">
           <h1 className="text-blue-500">เพิ่มข้อมูลผู้ใช้งาน</h1>
+        </div>
+        <div className="flex justify-end mx-auto mt-2 md:w-1/2">
+          <button className="mr-1 btn btn-green btn-sm">
+            <SVGSave color="white" /> &nbsp;บันทึก
+          </button>
         </div>
       </div>
       <div className="mt-2 bg-white border-b border-l border-r border-gray-400" />
