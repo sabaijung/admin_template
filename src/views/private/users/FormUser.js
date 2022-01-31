@@ -159,6 +159,122 @@ export default function FormUser() {
                     />
                   </div>
                 </div>
+
+                <div className="flex justify-start w-full">
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <TextField
+                      title="ชื่อผู้ใช้งาน ( อีเมล )"
+                      name="username"
+                      type="text"
+                      onChange=""
+                      onBlur=""
+                      value=""
+                      placeholder="e@mail.com"
+                    />
+                  </div>
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <label className="field-label">รหัสผ่าน</label>
+                    <div>
+                      <input
+                        className="field-input"
+                        id="password"
+                        name="password"
+                        type="password"
+                        onChange=""
+                        onBlur=""
+                        value=""
+                      />
+                      <div className="flex justify-end m-2 mr-3 -mt-7">
+                        <button
+                          type="button"
+                          className="focus:outline-none"
+                          id="show-Icon"
+                        ></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <label className="field-label">ยืนยันรหัสผ่าน</label>
+                    <div>
+                      <input
+                        className="field-input"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        type="password"
+                        onChange=""
+                        onBlur=""
+                        value=""
+                      />
+                      <div className="flex justify-end m-2 mr-3 -mt-7">
+                        <button
+                          type="button"
+                          className="focus:outline-none"
+                          id="show-IconConfirm"
+                        ></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-start w-full">
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <label className="field-label">สิทธิ์การใช้งาน</label>
+                    <div className="mt-1">
+                      <label className="items-center mr-5 cursor-pointer md:inline-flex ">
+                        <input
+                          type="radio"
+                          id="one"
+                          className=""
+                          name="role"
+                          value=""
+                        />
+                        <label htmlFor="one" className="cursor-pointer">
+                          ผู้ดูแลระบบ
+                        </label>
+                      </label>
+                      <label className="items-center cursor-pointer md:inline-flex ">
+                        <input
+                          type="radio"
+                          id="two"
+                          className=""
+                          name="role"
+                          value=""
+                        />
+                        <label htmlFor="two" className="cursor-pointer">
+                          ผู้ใช้งาน
+                        </label>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="pr-2 mt-2 md:w-4/12">
+                    <label className="field-label">สถานะการใช้งาน</label>
+                    <div className="mt-1">
+                      <label className="items-center mr-5 cursor-pointer md:inline-flex">
+                        <input
+                          type="radio"
+                          id="IsUseone-1"
+                          className=""
+                          name="isUse"
+                          value=""
+                        />
+                        <label htmlFor="IsUseone-1" className="cursor-pointer">
+                          ใช้งาน
+                        </label>
+                      </label>
+                      <label className="items-center cursor-pointer md:inline-flex ">
+                        <input
+                          id="IsUseone-2"
+                          type="radio"
+                          className=""
+                          name="isUse"
+                          value=""
+                        />
+                        <label htmlFor="IsUseone-2" className="cursor-pointer">
+                          ไม่ใช้งาน
+                        </label>
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
