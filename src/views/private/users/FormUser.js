@@ -4,6 +4,9 @@ import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import { TextSelect } from "../../../components/TextSelect";
 import { TextField } from "../../../components/TextField";
+import { province } from "../../../helper/JsonData/province.json";
+import { district } from "../../../helper/JsonData/district.json";
+import { subDistrict } from "../../../helper/JsonData/subdistrict.json";
 
 export default function FormUser() {
   const prefixTH = [
