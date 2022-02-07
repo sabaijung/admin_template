@@ -6,7 +6,7 @@ import { TextSelect } from "../../../components/TextSelect";
 import { TextField } from "../../../components/TextField";
 import { default as dtProvince } from "../../../helper/JsonData/province.json";
 import { default as dtDistrict } from "../../../helper/JsonData/district.json";
-//import { subDistrict } from "../../../helper/JsonData/subdistrict.json";
+import { default as dtSubDistrict } from "../../../helper/JsonData/subdistrict.json";
 
 export default function FormUser() {
   const [dataProvince, setDataProvince] = useState(null);
@@ -20,10 +20,17 @@ export default function FormUser() {
   return (
     <Formik
       initialValues={{
+        firstName: "",
+        lastName: "",
+        mobilePhone: "",
         prefix: "",
+        address: "",
         province: "",
         district: "",
         subDistrict: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
       }}
     >
       {({
@@ -80,7 +87,7 @@ export default function FormUser() {
                     name="prefix"
                     placeholder="คำนำหน้าชื่อ"
                     onBlur={handleBlur}
-                    value={prefixTH.filter((e) => e.id === values.prefixTH)}
+                    value={prefixTH.filter((e) => e.id === values.prefix)}
                   />
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
@@ -88,8 +95,8 @@ export default function FormUser() {
                     name="firstName"
                     title="ชื่อ"
                     type="text"
-                    onChange=""
-                    value=""
+                    onChange={handleChange}
+                    value={values.firstName}
                   />
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
@@ -97,8 +104,8 @@ export default function FormUser() {
                     title="นามสกุล"
                     name="lastName"
                     type="text"
-                    onChange=""
-                    value=""
+                    onChange={handleChange}
+                    value={values.lastName}
                   />
                 </div>
                 <div className="flex flex-wrap justify-start w-full">
@@ -125,8 +132,8 @@ export default function FormUser() {
                       title="เบอร์โทรศัพท์มือถือ"
                       name="mobilephone"
                       type="text"
-                      onChange=""
-                      value=""
+                      onChange={handleChange}
+                      value={values.mobilePhone}
                     />
                   </div>
                 </div>
@@ -136,9 +143,8 @@ export default function FormUser() {
                       title="ที่อยู่"
                       name="address"
                       type="text"
-                      onChange=""
-                      onBlur=""
-                      value=""
+                      onChange={handleChange}
+                      value={values.address}
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
@@ -164,7 +170,7 @@ export default function FormUser() {
                   <div className="pr-2 mt-2 md:w-4/12">
                     <TextSelect
                       title="อำเภอ"
-                      placeholder="กรุณาเลือก อำเภอ"
+                      placeholder="กรุณาเลือกอำเภอ"
                       options={dtDistrict.district.filter(
                         (x) => x.ProvinceId === dataProvince
                       )}
@@ -184,24 +190,34 @@ export default function FormUser() {
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
-                    <TextField
-                      onChange=""
-                      onBlur=""
-                      type="text"
-                      name="zipCode"
-                      value=""
+                    <TextSelect
                       title="ตำบล"
-                      maxLength="5"
-                      readOnly
+                      placeholder="กรุณาเลือกตำบล"
+                      options={dtSubDistrict.subDistrict.filter(
+                        (x) => x.DistrictId === dataDistrict
+                      )}
+                      value={dtSubDistrict.subDistrict.filter(
+                        (e) => e.NameInThai === values.subDistrict
+                      )}
+                      onChange={(e) => {
+                        if (e !== null) {
+                          setFieldValue("subDistrict", e.NameInThai);
+                          setFieldValue("zipCode", e.ZipCode.toString());
+                        }
+                      }}
+                      onBlur={handleBlur}
+                      getOptionLabel={(x) => x.NameInThai}
+                      getOptionValue={(x) => x.NameInThai}
+                      name="subDistrict"
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
                     <TextField
-                      onChange=""
-                      onBlur=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
                       type="text"
                       name="zipCode"
-                      value=""
+                      value={values.zipCode}
                       title="รหัสไปรษณีย์"
                       maxLength="5"
                       readOnly
@@ -215,9 +231,9 @@ export default function FormUser() {
                       title="ชื่อผู้ใช้งาน ( อีเมล )"
                       name="username"
                       type="text"
-                      onChange=""
-                      onBlur=""
-                      value=""
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.username}
                       placeholder="e@mail.com"
                     />
                   </div>
@@ -229,9 +245,9 @@ export default function FormUser() {
                         id="password"
                         name="password"
                         type="password"
-                        onChange=""
-                        onBlur=""
-                        value=""
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
                         <button
@@ -250,9 +266,9 @@ export default function FormUser() {
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
-                        onChange=""
-                        onBlur=""
-                        value=""
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.confirmPassword}
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
                         <button
