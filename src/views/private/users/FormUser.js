@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import { TextSelect } from "../../../components/TextSelect";
 import { TextField } from "../../../components/TextField";
-import { province } from "../../../helper/JsonData/province.json";
-import { district } from "../../../helper/JsonData/district.json";
-import { subDistrict } from "../../../helper/JsonData/subdistrict.json";
+import { default as dtProvince } from "../../../helper/JsonData/province.json";
+import { default as dtDistrict } from "../../../helper/JsonData/district.json";
+//import { subDistrict } from "../../../helper/JsonData/subdistrict.json";
 
 export default function FormUser() {
+  const [dataProvince, setDataProvince] = useState(null);
+  const [dataDistrict, setDataDistrict] = useState(null);
   const prefixTH = [
     { id: "1", name: "นาย" },
     { id: "2", name: "นาง" },
@@ -24,7 +26,14 @@ export default function FormUser() {
         subDistrict: "",
       }}
     >
-      {({ setFieldValue, handleBlur, values }) => (
+      {({
+        errors,
+        touched,
+        values,
+        handleChange,
+        handleBlur,
+        setFieldValue,
+      }) => (
         <Form>
           <div>
             <div className="flex flex-wrap mx-auto">
@@ -135,18 +144,17 @@ export default function FormUser() {
                   <div className="pr-2 mt-2 md:w-4/12">
                     <TextSelect
                       title="จังหวัด"
-                      placeholder="เลือกจังหวัด"
-                      options={province}
-                      value=""
-                      // value={province.filter(
-                      //   (e) => e.NameInThai === values.province
-                      // )}
-                      onChange=""
-                      // onChange={(e) => {
-                      //   if (e !== null) {
-                      //     setFieldValue("province", e.NameInThai);
-                      //   }
-                      // }}
+                      placeholder="กรุณาเลือกจังหวัด"
+                      options={dtProvince.province}
+                      onChange={(e) => {
+                        if (e !== null) {
+                          setFieldValue("province", e.NameInThai);
+                          setDataProvince(e.Id);
+                        }
+                      }}
+                      value={dtProvince.province.filter(
+                        (e) => e.NameInThai === values.province
+                      )}
                       onBlur={handleBlur}
                       getOptionLabel={(x) => x.NameInThai}
                       getOptionValue={(x) => x.NameInThai}
@@ -154,16 +162,26 @@ export default function FormUser() {
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
-                    <TextField
-                      onChange=""
-                      onBlur=""
-                      type="text"
-                      name="zipCode"
-                      value=""
+                    {/* <TextSelect
                       title="อำเภอ"
-                      maxLength="5"
-                      readOnly
-                    />
+                      placeholder="กรุณาเลือก อำเภอ"
+                      options={dtDistrict.district.filter(
+                        (x) => x.ProvinceId === dataProvince
+                      )}
+                      value={dtDistrict.district.filter(
+                        (e) => e.NameInThai === values.dtDistrict.district
+                      )}
+                      onChange={(e) => {
+                        if (e !== null) {
+                          setFieldValue("district", e.NameInThai);
+                          setDataDistrict(e.Id);
+                        }
+                      }}
+                      onBlur={handleBlur}
+                      getOptionLabel={(x) => x.NameInThai}
+                      getOptionValue={(x) => x.NameInThai}
+                      name="district"
+                    /> */}
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
                     <TextField
