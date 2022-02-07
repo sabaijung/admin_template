@@ -1,0 +1,466 @@
+{
+  "province": [
+    {
+      "Id": 1,
+      "Code": 10,
+      "NameInThai": "กรุงเทพมหานคร",
+      "NameInEnglish": "Bangkok"
+    },
+    {
+      "Id": 2,
+      "Code": 11,
+      "NameInThai": "สมุทรปราการ",
+      "NameInEnglish": "Samut Prakarn"
+    },
+    {
+      "Id": 3,
+      "Code": 12,
+      "NameInThai": "นนทบุรี",
+      "NameInEnglish": "Nonthaburi"
+    },
+    {
+      "Id": 4,
+      "Code": 13,
+      "NameInThai": "ปทุมธานี",
+      "NameInEnglish": "Pathum Thani"
+    },
+    {
+      "Id": 5,
+      "Code": 14,
+      "NameInThai": "พระนครศรีอยุธยา",
+      "NameInEnglish": "Phra Nakhon Si Ayutthaya"
+    },
+    {
+      "Id": 6,
+      "Code": 15,
+      "NameInThai": "อ่างทอง",
+      "NameInEnglish": "Ang Thong"
+    },
+    {
+      "Id": 7,
+      "Code": 16,
+      "NameInThai": "ลพบุรี",
+      "NameInEnglish": "Lop Buri"
+    },
+    {
+      "Id": 8,
+      "Code": 17,
+      "NameInThai": "สิงห์บุรี",
+      "NameInEnglish": "Sing Buri"
+    },
+    {
+      "Id": 9,
+      "Code": 18,
+      "NameInThai": "ชัยนาท",
+      "NameInEnglish": "Chai Nat"
+    },
+    {
+      "Id": 10,
+      "Code": 19,
+      "NameInThai": "สระบุรี",
+      "NameInEnglish": "Saraburi"
+    },
+    {
+      "Id": 11,
+      "Code": 20,
+      "NameInThai": "ชลบุรี",
+      "NameInEnglish": "Chon Buri"
+    },
+    {
+      "Id": 12,
+      "Code": 21,
+      "NameInThai": "ระยอง",
+      "NameInEnglish": "Rayong"
+    },
+    {
+      "Id": 13,
+      "Code": 22,
+      "NameInThai": "จันทบุรี",
+      "NameInEnglish": "Chanthaburi"
+    },
+    {
+      "Id": 14,
+      "Code": 23,
+      "NameInThai": "ตราด",
+      "NameInEnglish": "Trat"
+    },
+    {
+      "Id": 15,
+      "Code": 24,
+      "NameInThai": "ฉะเชิงเทรา",
+      "NameInEnglish": "Chachoengsao"
+    },
+    {
+      "Id": 16,
+      "Code": 25,
+      "NameInThai": "ปราจีนบุรี",
+      "NameInEnglish": "Prachin Buri"
+    },
+    {
+      "Id": 17,
+      "Code": 26,
+      "NameInThai": "นครนายก",
+      "NameInEnglish": "Nakhon Nayok"
+    },
+    {
+      "Id": 18,
+      "Code": 27,
+      "NameInThai": "สระแก้ว",
+      "NameInEnglish": "Sa kaeo"
+    },
+    {
+      "Id": 19,
+      "Code": 30,
+      "NameInThai": "นครราชสีมา",
+      "NameInEnglish": "Nakhon Ratchasima"
+    },
+    {
+      "Id": 20,
+      "Code": 31,
+      "NameInThai": "บุรีรัมย์",
+      "NameInEnglish": "Buri Ram"
+    },
+    {
+      "Id": 21,
+      "Code": 32,
+      "NameInThai": "สุรินทร์",
+      "NameInEnglish": "Surin"
+    },
+    {
+      "Id": 22,
+      "Code": 33,
+      "NameInThai": "ศรีสะเกษ",
+      "NameInEnglish": "Si Sa Ket"
+    },
+    {
+      "Id": 23,
+      "Code": 34,
+      "NameInThai": "อุบลราชธานี",
+      "NameInEnglish": "Ubon Ratchathani"
+    },
+    {
+      "Id": 24,
+      "Code": 35,
+      "NameInThai": "ยโสธร",
+      "NameInEnglish": "Yasothon"
+    },
+    {
+      "Id": 25,
+      "Code": 36,
+      "NameInThai": "ชัยภูมิ",
+      "NameInEnglish": "Chaiyaphum"
+    },
+    {
+      "Id": 26,
+      "Code": 37,
+      "NameInThai": "อำนาจเจริญ",
+      "NameInEnglish": "Amnat Charoen"
+    },
+    {
+      "Id": 27,
+      "Code": 38,
+      "NameInThai": "บึงกาฬ",
+      "NameInEnglish": "Bueng Kan"
+    },
+    {
+      "Id": 28,
+      "Code": 39,
+      "NameInThai": "หนองบัวลำภู",
+      "NameInEnglish": "Nong Bua Lam Phu"
+    },
+    {
+      "Id": 29,
+      "Code": 40,
+      "NameInThai": "ขอนแก่น",
+      "NameInEnglish": "Khon Kaen"
+    },
+    {
+      "Id": 30,
+      "Code": 41,
+      "NameInThai": "อุดรธานี",
+      "NameInEnglish": "Udon Thani"
+    },
+    {
+      "Id": 31,
+      "Code": 42,
+      "NameInThai": "เลย",
+      "NameInEnglish": "Loei"
+    },
+    {
+      "Id": 32,
+      "Code": 43,
+      "NameInThai": "หนองคาย",
+      "NameInEnglish": "Nong Khai"
+    },
+    {
+      "Id": 33,
+      "Code": 44,
+      "NameInThai": "มหาสารคาม",
+      "NameInEnglish": "Maha Sarakham"
+    },
+    {
+      "Id": 34,
+      "Code": 45,
+      "NameInThai": "ร้อยเอ็ด",
+      "NameInEnglish": "Roi Et"
+    },
+    {
+      "Id": 35,
+      "Code": 46,
+      "NameInThai": "กาฬสินธุ์",
+      "NameInEnglish": "Kalasin"
+    },
+    {
+      "Id": 36,
+      "Code": 47,
+      "NameInThai": "สกลนคร",
+      "NameInEnglish": "Sakon Nakhon"
+    },
+    {
+      "Id": 37,
+      "Code": 48,
+      "NameInThai": "นครพนม",
+      "NameInEnglish": "Nakhon Phanom"
+    },
+    {
+      "Id": 38,
+      "Code": 49,
+      "NameInThai": "มุกดาหาร",
+      "NameInEnglish": "Mukdahan"
+    },
+    {
+      "Id": 39,
+      "Code": 50,
+      "NameInThai": "เชียงใหม่",
+      "NameInEnglish": "Chiang Mai"
+    },
+    {
+      "Id": 40,
+      "Code": 51,
+      "NameInThai": "ลำพูน",
+      "NameInEnglish": "Lamphun"
+    },
+    {
+      "Id": 41,
+      "Code": 52,
+      "NameInThai": "ลำปาง",
+      "NameInEnglish": "Lampang"
+    },
+    {
+      "Id": 42,
+      "Code": 53,
+      "NameInThai": "อุตรดิตถ์",
+      "NameInEnglish": "Uttaradit"
+    },
+    {
+      "Id": 43,
+      "Code": 54,
+      "NameInThai": "แพร่",
+      "NameInEnglish": "Phrae"
+    },
+    {
+      "Id": 44,
+      "Code": 55,
+      "NameInThai": "น่าน",
+      "NameInEnglish": "Nan"
+    },
+    {
+      "Id": 45,
+      "Code": 56,
+      "NameInThai": "พะเยา",
+      "NameInEnglish": "Phayao"
+    },
+    {
+      "Id": 46,
+      "Code": 57,
+      "NameInThai": "เชียงราย",
+      "NameInEnglish": "Chiang Rai"
+    },
+    {
+      "Id": 47,
+      "Code": 58,
+      "NameInThai": "แม่ฮ่องสอน",
+      "NameInEnglish": "Mae Hong Son"
+    },
+    {
+      "Id": 48,
+      "Code": 60,
+      "NameInThai": "นครสวรรค์",
+      "NameInEnglish": "Nakhon Sawan"
+    },
+    {
+      "Id": 49,
+      "Code": 61,
+      "NameInThai": "อุทัยธานี",
+      "NameInEnglish": "Uthai Thani"
+    },
+    {
+      "Id": 50,
+      "Code": 62,
+      "NameInThai": "กำแพงเพชร",
+      "NameInEnglish": "Kamphaeng Phet"
+    },
+    {
+      "Id": 51,
+      "Code": 63,
+      "NameInThai": "ตาก",
+      "NameInEnglish": "Tak"
+    },
+    {
+      "Id": 52,
+      "Code": 64,
+      "NameInThai": "สุโขทัย",
+      "NameInEnglish": "Sukhothai"
+    },
+    {
+      "Id": 53,
+      "Code": 65,
+      "NameInThai": "พิษณุโลก",
+      "NameInEnglish": "Phitsanulok"
+    },
+    {
+      "Id": 54,
+      "Code": 66,
+      "NameInThai": "พิจิตร",
+      "NameInEnglish": "Phichit"
+    },
+    {
+      "Id": 55,
+      "Code": 67,
+      "NameInThai": "เพชรบูรณ์",
+      "NameInEnglish": "Phetchabun"
+    },
+    {
+      "Id": 56,
+      "Code": 70,
+      "NameInThai": "ราชบุรี",
+      "NameInEnglish": "Ratchaburi"
+    },
+    {
+      "Id": 57,
+      "Code": 71,
+      "NameInThai": "กาญจนบุรี",
+      "NameInEnglish": "Kanchanaburi"
+    },
+    {
+      "Id": 58,
+      "Code": 72,
+      "NameInThai": "สุพรรณบุรี",
+      "NameInEnglish": "Suphan Buri"
+    },
+    {
+      "Id": 59,
+      "Code": 73,
+      "NameInThai": "นครปฐม",
+      "NameInEnglish": "Nakhon Pathom"
+    },
+    {
+      "Id": 60,
+      "Code": 74,
+      "NameInThai": "สมุทรสาคร",
+      "NameInEnglish": "Samut Sakhon"
+    },
+    {
+      "Id": 61,
+      "Code": 75,
+      "NameInThai": "สมุทรสงคราม",
+      "NameInEnglish": "Samut Songkhram"
+    },
+    {
+      "Id": 62,
+      "Code": 76,
+      "NameInThai": "เพชรบุรี",
+      "NameInEnglish": "Phetchaburi"
+    },
+    {
+      "Id": 63,
+      "Code": 77,
+      "NameInThai": "ประจวบคีรีขันธ์",
+      "NameInEnglish": "Prachuap Khiri Khan"
+    },
+    {
+      "Id": 64,
+      "Code": 80,
+      "NameInThai": "นครศรีธรรมราช",
+      "NameInEnglish": "Nakhon Si Thammarat"
+    },
+    {
+      "Id": 65,
+      "Code": 81,
+      "NameInThai": "กระบี่",
+      "NameInEnglish": "Krabi"
+    },
+    {
+      "Id": 66,
+      "Code": 82,
+      "NameInThai": "พังงา",
+      "NameInEnglish": "Phang-nga"
+    },
+    {
+      "Id": 67,
+      "Code": 83,
+      "NameInThai": "ภูเก็ต",
+      "NameInEnglish": "Phuket"
+    },
+    {
+      "Id": 68,
+      "Code": 84,
+      "NameInThai": "สุราษฎร์ธานี",
+      "NameInEnglish": "Surat Thani"
+    },
+    {
+      "Id": 69,
+      "Code": 85,
+      "NameInThai": "ระนอง",
+      "NameInEnglish": "Ranong"
+    },
+    {
+      "Id": 70,
+      "Code": 86,
+      "NameInThai": "ชุมพร",
+      "NameInEnglish": "Chumphon"
+    },
+    {
+      "Id": 71,
+      "Code": 90,
+      "NameInThai": "สงขลา",
+      "NameInEnglish": "Songkhla"
+    },
+    {
+      "Id": 72,
+      "Code": 91,
+      "NameInThai": "สตูล",
+      "NameInEnglish": "Satun"
+    },
+    {
+      "Id": 73,
+      "Code": 92,
+      "NameInThai": "ตรัง",
+      "NameInEnglish": "Trang"
+    },
+    {
+      "Id": 74,
+      "Code": 93,
+      "NameInThai": "พัทลุง",
+      "NameInEnglish": "Phatthalung"
+    },
+    {
+      "Id": 75,
+      "Code": 94,
+      "NameInThai": "ปัตตานี",
+      "NameInEnglish": "Pattani"
+    },
+    {
+      "Id": 76,
+      "Code": 95,
+      "NameInThai": "ยะลา",
+      "NameInEnglish": "Yala"
+    },
+    {
+      "Id": 77,
+      "Code": 96,
+      "NameInThai": "นราธิวาส",
+      "NameInEnglish": "Narathiwat"
+    }
+  ]
+}
