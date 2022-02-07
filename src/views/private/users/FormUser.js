@@ -157,19 +157,19 @@ export default function FormUser() {
                       )}
                       onBlur={handleBlur}
                       getOptionLabel={(x) => x.NameInThai}
-                      getOptionValue={(x) => x.NameInThai}
+                      getOptionValue={(x) => x.Id}
                       name="province"
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
-                    {/* <TextSelect
+                    <TextSelect
                       title="อำเภอ"
                       placeholder="กรุณาเลือก อำเภอ"
                       options={dtDistrict.district.filter(
                         (x) => x.ProvinceId === dataProvince
                       )}
                       value={dtDistrict.district.filter(
-                        (e) => e.NameInThai === values.dtDistrict.district
+                        (e) => e.NameInThai === values.district
                       )}
                       onChange={(e) => {
                         if (e !== null) {
@@ -181,7 +181,7 @@ export default function FormUser() {
                       getOptionLabel={(x) => x.NameInThai}
                       getOptionValue={(x) => x.NameInThai}
                       name="district"
-                    /> */}
+                    />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
                     <TextField
