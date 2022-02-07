@@ -13,7 +13,11 @@ export default function FormUser() {
   ];
 
   return (
-    <Formik>
+    <Formik
+      initialValues={{
+        prefix: "",
+      }}
+    >
       {({ setFieldValue, handleBlur, values }) => (
         <Form>
           <div>
@@ -61,7 +65,7 @@ export default function FormUser() {
                     name="prefix"
                     placeholder="คำนำหน้าชื่อ"
                     onBlur={handleBlur}
-                    value={prefixTH.filter((e) => e.id === values.prefix)}
+                    value={prefixTH.filter((e) => e.id === values.prefixTH)}
                   />
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
