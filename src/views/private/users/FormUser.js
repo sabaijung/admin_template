@@ -6,9 +6,15 @@ import { TextSelect } from "../../../components/TextSelect";
 import { TextField } from "../../../components/TextField";
 
 export default function FormUser() {
+  const prefixTH = [
+    { id: "1", name: "นาย" },
+    { id: "2", name: "นาง" },
+    { id: "3", name: "นางสาว" },
+  ];
+
   return (
     <Formik>
-      {() => (
+      {({ setFieldValue, handleBlur, values }) => (
         <Form>
           <div>
             <div className="flex flex-wrap mx-auto">
@@ -46,14 +52,16 @@ export default function FormUser() {
                 <div className="pr-2 mt-2 md:w-1/5">
                   <TextSelect
                     title="คำนำหน้าชื่อ"
-                    options=""
-                    onChange=""
-                    getOptionLabel=""
-                    getOptionValue=""
+                    options={prefixTH}
+                    onChange={(e) => {
+                      setFieldValue("prefix", e.id);
+                    }}
+                    getOptionLabel={(x) => x.name}
+                    getOptionValue={(x) => x.id}
                     name="prefix"
                     placeholder="คำนำหน้าชื่อ"
-                    onBlur=""
-                    value=""
+                    onBlur={handleBlur}
+                    value={prefixTH.filter((e) => e.id === values.prefix)}
                   />
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
