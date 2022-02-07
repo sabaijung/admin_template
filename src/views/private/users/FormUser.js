@@ -179,7 +179,7 @@ export default function FormUser() {
                       }}
                       onBlur={handleBlur}
                       getOptionLabel={(x) => x.NameInThai}
-                      getOptionValue={(x) => x.NameInThai}
+                      getOptionValue={(x) => x.Id}
                       name="district"
                     />
                   </div>
