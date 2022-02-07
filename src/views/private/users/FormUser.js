@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
-//import TextSelect from "../../../components/TextSelect";
+import { TextSelect } from "../../../components/TextSelect";
 import { TextField } from "../../../components/TextField";
 
 export default function FormUser() {
@@ -44,11 +44,15 @@ export default function FormUser() {
               </div>
               <div className="flex flex-wrap justify-between md:w-3/4">
                 <div className="pr-2 mt-2 md:w-1/5">
-                  <TextField
+                  <TextSelect
                     title="คำนำหน้าชื่อ"
-                    name="prefix"
-                    type="text"
+                    options=""
                     onChange=""
+                    getOptionLabel=""
+                    getOptionValue=""
+                    name="prefix"
+                    placeholder="คำนำหน้าชื่อ"
+                    onBlur=""
                     value=""
                   />
                 </div>
