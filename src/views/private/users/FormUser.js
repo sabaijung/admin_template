@@ -135,17 +135,18 @@ export default function FormUser() {
                   <div className="pr-2 mt-2 md:w-4/12">
                     <TextSelect
                       title="จังหวัด"
-                      placeholder="กรุณาเลือก จังหวัด"
+                      placeholder="เลือกจังหวัด"
                       options={province}
-                      value={province.filter(
-                        (e) => e.NameInThai === values.province
-                      )}
-                      onChange={(e) => {
-                        if (e !== null) {
-                          setFieldValue("province", e.NameInThai);
-                          // setDataprovince(e.Id);
-                        }
-                      }}
+                      value=""
+                      // value={province.filter(
+                      //   (e) => e.NameInThai === values.province
+                      // )}
+                      onChange=""
+                      // onChange={(e) => {
+                      //   if (e !== null) {
+                      //     setFieldValue("province", e.NameInThai);
+                      //   }
+                      // }}
                       onBlur={handleBlur}
                       getOptionLabel={(x) => x.NameInThai}
                       getOptionValue={(x) => x.NameInThai}
