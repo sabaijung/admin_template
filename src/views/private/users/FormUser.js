@@ -19,6 +19,9 @@ export default function FormUser() {
     <Formik
       initialValues={{
         prefix: "",
+        province: "",
+        district: "",
+        subDistrict: "",
       }}
     >
       {({ setFieldValue, handleBlur, values }) => (
@@ -130,15 +133,23 @@ export default function FormUser() {
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
-                    <TextField
-                      onChange=""
-                      onBlur=""
-                      type="text"
-                      name="zipCode"
-                      value=""
+                    <TextSelect
                       title="จังหวัด"
-                      maxLength="5"
-                      readOnly
+                      placeholder="กรุณาเลือก จังหวัด"
+                      options={province}
+                      value={province.filter(
+                        (e) => e.NameInThai === values.province
+                      )}
+                      onChange={(e) => {
+                        if (e !== null) {
+                          setFieldValue("province", e.NameInThai);
+                          // setDataprovince(e.Id);
+                        }
+                      }}
+                      onBlur={handleBlur}
+                      getOptionLabel={(x) => x.NameInThai}
+                      getOptionValue={(x) => x.NameInThai}
+                      name="province"
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
