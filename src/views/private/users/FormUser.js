@@ -29,6 +29,7 @@ export default function FormUser() {
         province: "",
         district: "",
         subDistrict: "",
+        zipCode: "",
         username: "",
         password: "",
         confirmPassword: "",
@@ -243,7 +244,9 @@ export default function FormUser() {
                     <label className="field-label">รหัสผ่าน</label>
                     <div>
                       <input
-                        className="field-input"
+                        className={`field-input ${
+                          errors.password && touched.password && "is-invalid"
+                        }`}
                         id="password"
                         name="password"
                         type="password"
@@ -264,7 +267,11 @@ export default function FormUser() {
                     <label className="field-label">ยืนยันรหัสผ่าน</label>
                     <div>
                       <input
-                        className="field-input"
+                        className={`field-input ${
+                          errors.confirmPassword &&
+                          touched.confirmPassword &&
+                          "is-invalid"
+                        }`}
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
