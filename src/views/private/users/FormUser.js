@@ -132,7 +132,7 @@ export default function FormUser() {
                   <div className="pr-2 mt-2 md:w-1/3">
                     <TextField
                       title="เบอร์โทรศัพท์มือถือ"
-                      name="mobilephone"
+                      name="mobilePhone"
                       type="text"
                       onChange={handleChange}
                       value={values.mobilePhone}
