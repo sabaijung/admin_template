@@ -49,3 +49,10 @@
 .input-error {
   @apply text-sm text-left text-red-600;
 }
+
+.is-invalid {
+  @apply border border-red-600;
+}
+.is-valid {
+  @apply border-2 border-red-600 rounded h-9;
+}
