@@ -45,3 +45,7 @@
 .field-label {
   @apply text-gray-700 uppercase;
 }
+
+.input-error {
+  @apply text-sm text-left text-red-600;
+}
