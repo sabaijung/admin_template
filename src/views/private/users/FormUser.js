@@ -7,6 +7,7 @@ import { TextField } from "../../../components/TextField";
 import { default as dtProvince } from "../../../helper/JsonData/province.json";
 import { default as dtDistrict } from "../../../helper/JsonData/district.json";
 import { default as dtSubDistrict } from "../../../helper/JsonData/subdistrict.json";
+import { ValidateUser } from "./ValidateUser";
 
 export default function FormUser() {
   const [dataProvince, setDataProvince] = useState(null);
@@ -20,10 +21,10 @@ export default function FormUser() {
   return (
     <Formik
       initialValues={{
+        prefix: "",
         firstName: "",
         lastName: "",
         mobilePhone: "",
-        prefix: "",
         address: "",
         province: "",
         district: "",
@@ -32,6 +33,7 @@ export default function FormUser() {
         password: "",
         confirmPassword: "",
       }}
+      validationSchema={ValidateUser}
     >
       {({
         errors,
