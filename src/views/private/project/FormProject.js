@@ -3,7 +3,8 @@ import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import { TextField } from "../../../components/TextField";
 import { TextSelect } from "../../../components/TextSelect";
-import { Formik, Form } from "formik";
+import DatePickerTH from "../../../components/DatePickerTH";
+import { Formik, Form, ErrorMessage } from "formik";
 
 export default function FormProject() {
   const customer = [
@@ -69,14 +70,34 @@ export default function FormProject() {
                 />
               </div>
               <div className="pr-2 mt-2 md:w-1/3">
-                {" "}
-                <TextField
+                <label className="field-label">วันที่สั่งซื้อ</label>
+                <DatePickerTH
+                  name="orderDate"
+                  placeholder="วัน/เดือน/ปี"
+                  format="DD/MM/YYYY"
+                  editable={false}
+                  readOnly={values.orderDate === 1}
+                  onChange={(e) => {
+                    setFieldValue("orderDate", e);
+                  }}
+                  value={values.orderDate}
+                  inputClass={`field-input ${
+                    touched.orderDate && errors.orderDate && "is-invalid"
+                  }`}
+                />
+                {console.log("values.orderDate", values.orderDate)}
+                <ErrorMessage
+                  component="div"
+                  name="orderDate"
+                  className="input-error"
+                />
+                {/* <TextField
                   name="startDate"
                   title="วันที่เริ่มโครงการ"
-                  type="text"
+                  type="date"
                   onChange={handleChange}
                   value={values.firstName}
-                />
+                /> */}
               </div>
               <div className="pr-2 mt-2 md:w-1/3">
                 <TextField
