@@ -70,7 +70,7 @@ export default function FormProject() {
                 />
               </div>
               <div className="pr-2 mt-2 md:w-1/3">
-                <label className="field-label">วันที่สั่งซื้อ</label>
+                <label className="field-label">วันที่เริ่มโครงการ</label>
                 <DatePickerTH
                   name="orderDate"
                   placeholder="วัน/เดือน/ปี"
