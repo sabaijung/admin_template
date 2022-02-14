@@ -8,14 +8,20 @@ export default function DatePickerTH({ placeholder, ...porps }) {
     <>
       <DatePicker
         showOtherDays
-        format="DD/MM/YYYY "
+        format="DD/MM/YYYY"
         locale={thai_th}
         calendar={thai}
         {...porps}
         containerStyle={{
           width: "100%",
         }}
-        render={<CustomInput placeholder={placeholder} inputClass={porps.inputClass} disabled={porps.disabled}/>}
+        render={
+          <CustomInput
+            placeholder={placeholder}
+            inputClass={porps.inputClass}
+            disabled={porps.disabled}
+          />
+        }
       />
       <div className="flex justify-end m-2 mr-3 -mt-7">
         <SVGPDatePicker />
@@ -24,11 +30,18 @@ export default function DatePickerTH({ placeholder, ...porps }) {
   );
 }
 
-function CustomInput({ openCalendar, value, handleValueChange, placeholder, inputClass, disabled }) {
+function CustomInput({
+  openCalendar,
+  value,
+  handleValueChange,
+  placeholder,
+  inputClass,
+  disabled,
+}) {
   return (
     <input
       disabled={disabled ? true : false}
-      className={"field-input  " + (inputClass ? inputClass : "")}
+      className={"field-input" + (inputClass ? inputClass : "")}
       onFocus={openCalendar}
       value={value}
       onChange={handleValueChange}
