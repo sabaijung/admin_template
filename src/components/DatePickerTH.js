@@ -41,7 +41,7 @@ function CustomInput({
   return (
     <input
       disabled={disabled ? true : false}
-      className={"field-input" + (inputClass ? inputClass : "")}
+      className={"field-input " + (inputClass ? inputClass : "")}
       onFocus={openCalendar}
       value={value}
       onChange={handleValueChange}
