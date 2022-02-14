@@ -56,7 +56,7 @@ export default function FormProject() {
                   value={values.firstName}
                 />
               </div>
-              <div className="pr-2 mt-2 md:w-2/4">
+              <div className="mt-2 md:w-2/4">
                 <TextSelect
                   title="ชื่อลูกค้า"
                   options={customer}
@@ -118,6 +118,7 @@ export default function FormProject() {
                 />
               </div>
               <div className="pr-2 mt-2 md:w-full">
+                <label className="field-label">รายละเอียด</label>
                 <CKEditor
                   helperText={touched.detail && errors.detail}
                   name="aboutYou"
@@ -139,13 +140,6 @@ export default function FormProject() {
                     minHeight: "500px",
                   }}
                 />
-                {/* <TextField
-                  name="detail"
-                  title="รายละเอียด"
-                  type="text"
-                  onChange={handleChange}
-                  value={values.firstName}
-                /> */}
               </div>
               <div className="pr-2 mt-2 md:w-full">
                 <label className="field-label">สถานะโครงการ</label>
