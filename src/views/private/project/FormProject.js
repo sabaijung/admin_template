@@ -76,13 +76,13 @@ export default function FormProject() {
                   placeholder="วัน/เดือน/ปี"
                   format="DD/MM/YYYY"
                   editable={false}
-                  readOnly={values.orderDate === 1}
+                  readOnly={values.startDate === 1}
                   onChange={(e) => {
                     setFieldValue("startDate", e);
                   }}
-                  value={values.orderDate}
+                  value={values.startDate}
                   inputClass={`field-input ${
-                    touched.orderDate && errors.orderDate && "is-invalid"
+                    touched.startDate && errors.startDate && "is-invalid"
                   }`}
                 />
                 {console.log("values.startDate", values.startDate)}
