@@ -72,23 +72,23 @@ export default function FormProject() {
               <div className="pr-2 mt-2 md:w-1/3">
                 <label className="field-label">วันที่เริ่มโครงการ</label>
                 <DatePickerTH
-                  name="orderDate"
+                  name="startDate"
                   placeholder="วัน/เดือน/ปี"
                   format="DD/MM/YYYY"
                   editable={false}
                   readOnly={values.orderDate === 1}
                   onChange={(e) => {
-                    setFieldValue("orderDate", e);
+                    setFieldValue("startDate", e);
                   }}
                   value={values.orderDate}
                   inputClass={`field-input ${
                     touched.orderDate && errors.orderDate && "is-invalid"
                   }`}
                 />
-                {console.log("values.orderDate", values.orderDate)}
+                {console.log("values.startDate", values.startDate)}
                 <ErrorMessage
                   component="div"
-                  name="orderDate"
+                  name="startDate"
                   className="input-error"
                 />
                 {/* <TextField
