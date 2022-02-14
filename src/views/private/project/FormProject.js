@@ -4,6 +4,8 @@ import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import { TextField } from "../../../components/TextField";
 import { TextSelect } from "../../../components/TextSelect";
 import DatePickerTH from "../../../components/DatePickerTH";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Formik, Form, ErrorMessage } from "formik";
 
 export default function FormProject() {
@@ -45,7 +47,7 @@ export default function FormProject() {
             <div className="mt-2 bg-white border-b border-l border-r border-gray-400" />
 
             <div className="mt-2 flex flex-wrap justify-between">
-              <div className="pr-2 mt-2 md:w-full">
+              <div className="mt-2 md:w-full">
                 <TextField
                   name="projectName"
                   title="ชื่อโครงการ"
@@ -54,7 +56,7 @@ export default function FormProject() {
                   value={values.firstName}
                 />
               </div>
-              <div className="pr-2 mt-2 md:w-1/3">
+              <div className="pr-2 mt-2 md:w-2/4">
                 <TextSelect
                   title="ชื่อลูกค้า"
                   options={customer}
@@ -69,7 +71,7 @@ export default function FormProject() {
                   value={customer.filter((e) => e.id === values.prefix)}
                 />
               </div>
-              <div className="pr-2 mt-2 md:w-1/3">
+              <div className="pr-2 mt-2 md:w-1/4">
                 <label className="field-label">วันที่เริ่มโครงการ</label>
                 <DatePickerTH
                   name="startDate"
@@ -91,31 +93,59 @@ export default function FormProject() {
                   name="startDate"
                   className="input-error"
                 />
-                {/* <TextField
-                  name="startDate"
-                  title="วันที่เริ่มโครงการ"
-                  type="date"
-                  onChange={handleChange}
-                  value={values.firstName}
-                /> */}
               </div>
-              <div className="pr-2 mt-2 md:w-1/3">
-                <TextField
+              <div className="pr-2 mt-2 md:w-1/4">
+                <label className="field-label">วันที่สิ้นสุดโครงการ</label>
+                <DatePickerTH
                   name="endDate"
-                  title="วันที่สิ้นสุดโครงการ"
-                  type="text"
-                  onChange={handleChange}
-                  value={values.firstName}
+                  placeholder="วัน/เดือน/ปี"
+                  format="DD/MM/YYYY"
+                  editable={false}
+                  readOnly={values.endDate === 1}
+                  onChange={(e) => {
+                    setFieldValue("endDate", e);
+                  }}
+                  value={values.endDate}
+                  inputClass={`field-input ${
+                    touched.endDate && errors.endDate && "is-invalid"
+                  }`}
+                />
+                {console.log("values.endDate", values.endDate)}
+                <ErrorMessage
+                  component="div"
+                  name="endDate"
+                  className="input-error"
                 />
               </div>
               <div className="pr-2 mt-2 md:w-full">
-                <TextField
+                <CKEditor
+                  helperText={touched.aboutYou && errors.aboutYou}
+                  name="aboutYou"
+                  editor={ClassicEditor}
+                  data={values.aboutYou}
+                  onChange={(event, editor) => {
+                    setFieldValue("aboutYou", editor.getData());
+                  }}
+                  config={{
+                    toolbar: [
+                      "heading",
+                      "|",
+                      "bold",
+                      "italic",
+                      "|",
+                      "undo",
+                      "redo",
+                    ],
+                    minHeight: "500px",
+                  }}
+                />
+                {/* <TextField
                   name="detail"
                   title="รายละเอียด"
                   type="text"
                   onChange={handleChange}
                   value={values.firstName}
-                />
+                /> */}
               </div>
               <div className="pr-2 mt-2 md:w-full">
                 <label className="field-label">สถานะโครงการ</label>
