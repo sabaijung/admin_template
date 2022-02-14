@@ -119,12 +119,12 @@ export default function FormProject() {
               </div>
               <div className="pr-2 mt-2 md:w-full">
                 <CKEditor
-                  helperText={touched.aboutYou && errors.aboutYou}
+                  helperText={touched.detail && errors.detail}
                   name="aboutYou"
                   editor={ClassicEditor}
-                  data={values.aboutYou}
+                  data={values.detail}
                   onChange={(event, editor) => {
-                    setFieldValue("aboutYou", editor.getData());
+                    setFieldValue("detail", editor.getData());
                   }}
                   config={{
                     toolbar: [
