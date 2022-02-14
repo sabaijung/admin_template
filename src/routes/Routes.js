@@ -26,6 +26,13 @@ const Routes = [
     role: 0,
     layout: PrivateLayout,
   },
+  {
+    path: "/Project/FormProject",
+    name: "เพิ่มข้อมูลโครงการ",
+    component: FormProject,
+    role: 0,
+    layout: PrivateLayout,
+  },
 ];
 
 export default Routes;
