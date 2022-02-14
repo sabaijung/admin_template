@@ -7,6 +7,7 @@ import DatePickerTH from "../../../components/DatePickerTH";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Formik, Form, ErrorMessage } from "formik";
+import { ValidateProject } from "./ValidateProject";
 
 export default function FormProject() {
   const customer = [
@@ -19,7 +20,13 @@ export default function FormProject() {
     <Formik
       initialValues={{
         projectName: "",
+        customerName: "",
+        startDate: "",
+        endDate: "",
+        detail: "",
+        projectStatus: "",
       }}
+      validationSchema={ValidateProject}
     >
       {({
         errors,
@@ -121,7 +128,7 @@ export default function FormProject() {
                 <label className="field-label">รายละเอียด</label>
                 <CKEditor
                   helperText={touched.detail && errors.detail}
-                  name="aboutYou"
+                  name="detail"
                   editor={ClassicEditor}
                   data={values.detail}
                   onChange={(event, editor) => {
@@ -140,6 +147,13 @@ export default function FormProject() {
                     minHeight: "500px",
                   }}
                 />
+                <div className="text-red-500 text-sm">
+                  <ErrorMessage
+                    component="div"
+                    name="detail"
+                    className="input-error"
+                  />
+                </div>
               </div>
               <div className="pr-2 mt-2 md:w-full">
                 <label className="field-label">สถานะโครงการ</label>
