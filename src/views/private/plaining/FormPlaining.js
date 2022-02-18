@@ -138,7 +138,63 @@ export default function FormPlaining() {
                                 >
                                     {({ insert, remove, push }) => (
                                         <div>
-                                            <div className="w-full md:flex md:flex-wrap md:justify-start"></div>
+                                            <div className="flex items-center w-full py-2 ">
+                                                <div className="field-group md:w-1/12 pr-2">
+                                                    <label className="text-center field-label">1</label>
+                                                </div>
+                                                <div className="md:w-3/6 pr-2">
+                                                    <TextField
+                                                        name="subPlainingName"
+                                                        title=""
+                                                        type="text"
+                                                        onChange={handleChange}
+                                                        value={values.subPlainingName}
+                                                    />
+                                                </div>
+                                                <div className="md:w-3/12 pr-2">
+                                                    <DatePickerTH
+                                                        name="startDate"
+                                                        placeholder="วัน/เดือน/ปี"
+                                                        format="DD/MM/YYYY"
+                                                        editable={false}
+                                                        readOnly={values.startDate === 1}
+                                                        onChange={(e) => {
+                                                            setFieldValue("startDate", e);
+                                                        }}
+                                                        value={values.startDate}
+                                                        inputClass={`field-input ${touched.startDate && errors.startDate && "is-invalid"
+                                                            }`}
+                                                    />
+                                                    {console.log("values.startDate", values.startDate)}
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="startDate"
+                                                        className="input-error"
+                                                    />
+                                                </div>
+                                                <div className="md:w-3/12">
+                                                    <DatePickerTH
+                                                        name="startDate"
+                                                        placeholder="วัน/เดือน/ปี"
+                                                        format="DD/MM/YYYY"
+                                                        editable={false}
+                                                        readOnly={values.startDate === 1}
+                                                        onChange={(e) => {
+                                                            setFieldValue("startDate", e);
+                                                        }}
+                                                        value={values.startDate}
+                                                        inputClass={`field-input ${touched.startDate && errors.startDate && "is-invalid"
+                                                            }`}
+                                                    />
+                                                    {console.log("values.startDate", values.startDate)}
+                                                    <ErrorMessage
+                                                        component="div"
+                                                        name="startDate"
+                                                        className="input-error"
+                                                    />
+                                                </div>
+
+                                            </div>
                                         </div>
                                     )}
                                 </FieldArray>
