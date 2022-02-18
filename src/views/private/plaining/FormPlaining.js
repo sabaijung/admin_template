@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import { TextField } from "../../../components/TextField";
@@ -6,8 +6,10 @@ import { Formik, Form, ErrorMessage, Field, FieldArray } from "formik";
 import DatePickerTH from "../../../components/DatePickerTH";
 import { TextSelect } from "../../../components/TextSelect";
 import SVGAdd from "../../../assets/svg/SVGAdd";
+import { useHistory } from 'react-router-dom';
 
 export default function FormPlaining() {
+    const history = useHistory();
 
     const teamsMember = [
         { id: "1", name: "นาย ก" },
@@ -15,10 +17,25 @@ export default function FormPlaining() {
         { id: "3", name: "นาย ค" },
     ];
 
+    const [detailId, setDetailId] = useState(null);
+    const [id, setId] = useState(null);
 
     return (
         <Formik
-            initialValues={{ friends: ['jared', 'ian', 'brent'] }}
+            initialValues={{
+                //friends: ['jared', 'ian', 'brent'],
+                subPlainingItem:
+                    id !== null
+                        ? detailId.subPlainingItem
+                        : [
+                            {
+                                rawId: '',
+                                subPlainingName: '',
+                                spStartDate: '',
+                                spEndDate: ''
+                            },
+                        ],
+            }}
         // validationSchema={ValidateProject}
         >
             {({
@@ -71,7 +88,7 @@ export default function FormPlaining() {
                                     inputClass={`field-input ${touched.startDate && errors.startDate && "is-invalid"
                                         }`}
                                 />
-                                {console.log("values.startDate", values.startDate)}
+
                                 <ErrorMessage
                                     component="div"
                                     name="startDate"
@@ -94,7 +111,6 @@ export default function FormPlaining() {
                                     inputClass={`field-input ${touched.endDate && errors.endDate && "is-invalid"
                                         }`}
                                 />
-                                {console.log("values.endDate", values.endDate)}
                                 <ErrorMessage
                                     component="div"
                                     name="endDate"
@@ -135,71 +151,79 @@ export default function FormPlaining() {
                                     </div>
                                 </div>
                                 <FieldArray
-                                    name="friends"
+                                    name="subPlainingItem"
                                 >
                                     {({ insert, remove, push }) => (
                                         <div>
-                                            <div className="flex items-center w-full py-2 ">
-                                                <div className="field-group md:w-1/12 pr-2">
-                                                    <label className="text-center field-label">1</label>
-                                                </div>
-                                                <div className="md:w-3/6 pr-2">
-                                                    <TextField
-                                                        name="subPlainingName"
-                                                        title=""
-                                                        type="text"
-                                                        onChange={handleChange}
-                                                        value={values.subPlainingName}
-                                                    />
-                                                </div>
-                                                <div className="md:w-3/12 pr-2">
-                                                    <DatePickerTH
-                                                        name="spStartDate"
-                                                        placeholder="วัน/เดือน/ปี"
-                                                        format="DD/MM/YYYY"
-                                                        editable={false}
-                                                        readOnly={values.spStartDate === 1}
-                                                        onChange={(e) => {
-                                                            setFieldValue("spStartDate", e);
-                                                        }}
-                                                        value={values.spStartDate}
-                                                        inputClass={`field-input ${touched.spStartDate && errors.spStartDate && "is-invalid"
-                                                            }`}
-                                                    />
-                                                    {console.log("values.spStartDate", values.spStartDate)}
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="spStartDate"
-                                                        className="input-error"
-                                                    />
-                                                </div>
-                                                <div className="md:w-3/12">
-                                                    <DatePickerTH
-                                                        name="spEndDate"
-                                                        placeholder="วัน/เดือน/ปี"
-                                                        format="DD/MM/YYYY"
-                                                        editable={false}
-                                                        readOnly={values.spEndDate === 1}
-                                                        onChange={(e) => {
-                                                            setFieldValue("spEndDate", e);
-                                                        }}
-                                                        value={values.spEndDate}
-                                                        inputClass={`field-input ${touched.spEndDate && errors.spEndDate && "is-invalid"
-                                                            }`}
-                                                    />
-                                                    {console.log("values.spEndDate", values.spEndDate)}
-                                                    <ErrorMessage
-                                                        component="div"
-                                                        name="spEndDate"
-                                                        className="input-error"
-                                                    />
-                                                </div>
-                                            </div>
+                                            {values.subPlainingItem.length !== null &&
+                                                values.subPlainingItem.map((item, index) => (
+                                                    <div key={index} className="flex items-center w-full py-2 ">
+                                                        <div className="field-group md:w-1/12 pr-2">
+                                                            <label className="text-center field-label">{index + 1}</label>
+                                                        </div>
+                                                        <div className="md:w-3/6 pr-2">
+                                                            <TextField
+                                                                name="subPlainingName"
+                                                                title=""
+                                                                type="text"
+                                                                onChange={handleChange}
+                                                                value={values.subPlainingName}
+                                                            />
+                                                        </div>
+                                                        <div className="md:w-3/12 pr-2">
+                                                            <DatePickerTH
+                                                                name="spStartDate"
+                                                                placeholder="วัน/เดือน/ปี"
+                                                                format="DD/MM/YYYY"
+                                                                editable={false}
+                                                                readOnly={values.spStartDate === 1}
+                                                                onChange={(e) => {
+                                                                    setFieldValue("spStartDate", e);
+                                                                }}
+                                                                value={values.spStartDate}
+                                                                inputClass={`field-input ${touched.spStartDate && errors.spStartDate && "is-invalid"
+                                                                    }`}
+                                                            />
+                                                            <ErrorMessage
+                                                                component="div"
+                                                                name="spStartDate"
+                                                                className="input-error"
+                                                            />
+                                                        </div>
+                                                        <div className="md:w-3/12">
+                                                            <DatePickerTH
+                                                                name="spEndDate"
+                                                                placeholder="วัน/เดือน/ปี"
+                                                                format="DD/MM/YYYY"
+                                                                editable={false}
+                                                                readOnly={values.spEndDate === 1}
+                                                                onChange={(e) => {
+                                                                    setFieldValue("spEndDate", e);
+                                                                }}
+                                                                value={values.spEndDate}
+                                                                inputClass={`field-input ${touched.spEndDate && errors.spEndDate && "is-invalid"
+                                                                    }`}
+                                                            />
+                                                            <ErrorMessage
+                                                                component="div"
+                                                                name="spEndDate"
+                                                                className="input-error"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                ))}
 
+                                            {/* ปุ่ม add */}
                                             <div className="flex justify-end my-2">
                                                 <button
                                                     className="mr-1 btn btn-green btn-sm"
                                                     onClick={() => {
+                                                        push({
+                                                            rawId: '',
+                                                            subPlainingName: '',
+                                                            spStartDate: '',
+                                                            spEndDate: ''
+                                                        })
                                                     }}
                                                 >
                                                     <SVGAdd color="white" />
