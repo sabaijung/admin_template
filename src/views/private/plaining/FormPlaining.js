@@ -23,7 +23,6 @@ export default function FormPlaining() {
     return (
         <Formik
             initialValues={{
-                //friends: ['jared', 'ian', 'brent'],
                 subPlainingItem:
                     id !== null
                         ? detailId.subPlainingItem
