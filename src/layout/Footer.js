@@ -11,7 +11,7 @@ export default function Footer() {
               <img src="https://img.shields.io/github/v/release/justboil/admin-one-tailwind?color=%23999" />
             </a>
           </div>
-          <a href="https://justboil.me">sdfsdf</a>
+          <a href="https://justboil.me"></a>
         </div>
       </footer>
     </div>
