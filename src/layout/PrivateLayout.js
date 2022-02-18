@@ -4,6 +4,7 @@ import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import MainUser from "../views/private/users/MainUser";
 import FormUser from "../views/private/users/FormUser";
+import MainProject from "../views/private/project/MainProject"
 import FormProject from "../views/private/project/FormProject";
 import { Route, Switch } from "react-router-dom";
 
@@ -18,12 +19,11 @@ export default function PrivateLayout() {
           className="p-4 break-words bg-white rounded-md shadow-xl"
         >
           <Switch>
-            <Route exact path="/" component={MainUser} />
+            <Route exact path="/MainUser" component={MainUser} />
             <Route path="/MainUser/FormUser" component={FormUser} />
+            <Route path="/MainProject" component={MainProject} />
             <Route path="/Project/FormProject" component={FormProject} />
           </Switch>
-          {/* <MainUser /> */}
-          {/* {children} */}
         </div>
       </section>
       <Footer />
