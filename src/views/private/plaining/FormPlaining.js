@@ -5,6 +5,7 @@ import { TextField } from "../../../components/TextField";
 import { Formik, Form, ErrorMessage, Field, FieldArray } from "formik";
 import DatePickerTH from "../../../components/DatePickerTH";
 import { TextSelect } from "../../../components/TextSelect";
+import SVGAdd from "../../../assets/svg/SVGAdd";
 
 export default function FormPlaining() {
 
@@ -153,50 +154,61 @@ export default function FormPlaining() {
                                                 </div>
                                                 <div className="md:w-3/12 pr-2">
                                                     <DatePickerTH
-                                                        name="startDate"
+                                                        name="spStartDate"
                                                         placeholder="วัน/เดือน/ปี"
                                                         format="DD/MM/YYYY"
                                                         editable={false}
-                                                        readOnly={values.startDate === 1}
+                                                        readOnly={values.spStartDate === 1}
                                                         onChange={(e) => {
-                                                            setFieldValue("startDate", e);
+                                                            setFieldValue("spStartDate", e);
                                                         }}
-                                                        value={values.startDate}
-                                                        inputClass={`field-input ${touched.startDate && errors.startDate && "is-invalid"
+                                                        value={values.spStartDate}
+                                                        inputClass={`field-input ${touched.spStartDate && errors.spStartDate && "is-invalid"
                                                             }`}
                                                     />
-                                                    {console.log("values.startDate", values.startDate)}
+                                                    {console.log("values.spStartDate", values.spStartDate)}
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="startDate"
+                                                        name="spStartDate"
                                                         className="input-error"
                                                     />
                                                 </div>
                                                 <div className="md:w-3/12">
                                                     <DatePickerTH
-                                                        name="startDate"
+                                                        name="spEndDate"
                                                         placeholder="วัน/เดือน/ปี"
                                                         format="DD/MM/YYYY"
                                                         editable={false}
-                                                        readOnly={values.startDate === 1}
+                                                        readOnly={values.spEndDate === 1}
                                                         onChange={(e) => {
-                                                            setFieldValue("startDate", e);
+                                                            setFieldValue("spEndDate", e);
                                                         }}
-                                                        value={values.startDate}
-                                                        inputClass={`field-input ${touched.startDate && errors.startDate && "is-invalid"
+                                                        value={values.spEndDate}
+                                                        inputClass={`field-input ${touched.spEndDate && errors.spEndDate && "is-invalid"
                                                             }`}
                                                     />
-                                                    {console.log("values.startDate", values.startDate)}
+                                                    {console.log("values.spEndDate", values.spEndDate)}
                                                     <ErrorMessage
                                                         component="div"
-                                                        name="startDate"
+                                                        name="spEndDate"
                                                         className="input-error"
                                                     />
                                                 </div>
+                                            </div>
 
+                                            <div className="flex justify-end my-2">
+                                                <button
+                                                    className="mr-1 btn btn-green btn-sm"
+                                                    onClick={() => {
+                                                    }}
+                                                >
+                                                    <SVGAdd color="white" />
+                                                </button>
                                             </div>
                                         </div>
+
                                     )}
+
                                 </FieldArray>
                             </div>
                         </div>
