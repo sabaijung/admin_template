@@ -5,6 +5,7 @@ import MainUser from "../views/private/users/MainUser";
 import FormUser from "../views/private/users/FormUser";
 import MainProject from "../views/private/project/MainProject";
 import FormProject from "../views/private/project/FormProject";
+import FormPlaining from "../views/private/plaining/FormPlaining";
 
 const Routes = [
   {
@@ -39,6 +40,13 @@ const Routes = [
     path: "/Project/FormProject",
     name: "เพิ่มข้อมูลโครงการ",
     component: FormProject,
+    role: 0,
+    layout: PrivateLayout,
+  },
+  {
+    path: "/Plaining/FormPlaining",
+    name: "เพิ่มข้อมูลแผนงานโครงการ",
+    component: FormPlaining,
     role: 0,
     layout: PrivateLayout,
   },
