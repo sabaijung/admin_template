@@ -6,6 +6,7 @@ import MainUser from "../views/private/users/MainUser";
 import FormUser from "../views/private/users/FormUser";
 import MainProject from "../views/private/project/MainProject"
 import FormProject from "../views/private/project/FormProject";
+import MainPlaining from "../views/private/plaining/MainPlaining";
 import FormPlaining from "../views/private/plaining/FormPlaining";
 import { Route, Switch } from "react-router-dom";
 
@@ -24,7 +25,8 @@ export default function PrivateLayout() {
             <Route path="/MainUser/FormUser" component={FormUser} />
             <Route path="/MainProject" component={MainProject} />
             <Route path="/Project/FormProject" component={FormProject} />
-            <Route path="/Plaining/FormPlaining" component={FormPlaining} />
+            <Route path="/MainPlaining" component={MainPlaining} />
+            <Route path="/MainPlaining/FormPlaining" component={FormPlaining} />
           </Switch>
         </div>
       </section>

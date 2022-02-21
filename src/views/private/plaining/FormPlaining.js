@@ -72,80 +72,25 @@ export default function FormPlaining() {
                                     value={values.plainingName}
                                 />
                             </div>
-                            <div className="mt-2 md:w-1/4 pr-1">
-                                <label className="field-label">วันที่เริ่มต้น</label>
-                                <DatePickerTH
-                                    name="startDate"
-                                    placeholder="วัน/เดือน/ปี"
-                                    format="DD/MM/YYYY"
-                                    editable={false}
-                                    readOnly={values.startDate === 1}
-                                    onChange={(e) => {
-                                        setFieldValue("startDate", e);
-                                    }}
-                                    value={values.startDate}
-                                    inputClass={`field-input ${touched.startDate && errors.startDate && "is-invalid"
-                                        }`}
-                                />
 
-                                <ErrorMessage
-                                    component="div"
-                                    name="startDate"
-                                    className="input-error"
-                                />
-
-                            </div>
-                            <div className="mt-2 md:w-1/4 pr-1">
-                                <label className="field-label">วันที่สิ้นสุด</label>
-                                <DatePickerTH
-                                    name="endDate"
-                                    placeholder="วัน/เดือน/ปี"
-                                    format="DD/MM/YYYY"
-                                    editable={false}
-                                    readOnly={values.endDate === 1}
-                                    onChange={(e) => {
-                                        setFieldValue("endDate", e);
-                                    }}
-                                    value={values.endDate}
-                                    inputClass={`field-input ${touched.endDate && errors.endDate && "is-invalid"
-                                        }`}
-                                />
-                                <ErrorMessage
-                                    component="div"
-                                    name="endDate"
-                                    className="input-error"
-                                />
-                            </div>
-                            <div className="mt-2 md:w-2/4">
-                                <TextSelect
-                                    title="ผู้รับผิดชอบ"
-                                    options={teamsMember}
-                                    onChange={(e) => {
-                                        setFieldValue("teamsMember", e.id);
-                                    }}
-                                    getOptionLabel={(x) => x.name}
-                                    getOptionValue={(x) => x.id}
-                                    name="teamsMember"
-                                    placeholder="ผู้รับผิดชอบ"
-                                    onBlur={handleBlur}
-                                    value={teamsMember.filter((e) => e.id === values.teamsMember)}
-                                />
-                            </div>
                             <div className="mt-2 md:w-full">
                                 <span>แผนงานย่อย</span>
                             </div>
                             <div className="mt-2 md:w-full">
-                                <div className="mt-2 md:flex md:flex-wrap md:justify-between">
-                                    <div className="field-group md:w-1/6">
+                                <div className="mt-2 md:flex md:flex-wrap md:justify-start">
+                                    <div className="field-group pr-4">
                                         <label className="text-center field-label">ลำดับ</label>
                                     </div>
-                                    <div className="pr-2 field-group md:w-3/6">
+                                    <div className="field-group md:w-4/12">
                                         <label className="field-label">ชื่อแผนงานย่อย</label>
                                     </div>
-                                    <div className="pr-2 field-group md:w-1/6">
+                                    <div className="pr-2 field-group md:w-3/12">
+                                        <label className="field-label">ผู้รับผิดชอบ</label>
+                                    </div>
+                                    <div className="pr-2 field-group md:w-2/12">
                                         <label className="field-label">วันที่เริ่มต้น</label>
                                     </div>
-                                    <div className="pr-2 field-group md:w-1/6">
+                                    <div className="pr-2 field-group md:w-2/12">
                                         <label className="field-label">วันที่สิ้นสุด</label>
                                     </div>
                                 </div>
@@ -156,11 +101,11 @@ export default function FormPlaining() {
                                         <div>
                                             {values.subPlainingItem.length !== null &&
                                                 values.subPlainingItem.map((item, index) => (
-                                                    <div key={index} className="flex items-center w-full py-2 ">
-                                                        <div className="field-group md:w-1/12 pr-2">
+                                                    <div key={index} className="md:flex md:flex-wrap md:justify-start">
+                                                        <div className="field-group pr-4">
                                                             <label className="text-center field-label">{index + 1}</label>
                                                         </div>
-                                                        <div className="md:w-3/6 pr-2">
+                                                        <div className="md:w-4/12 pr-2">
                                                             <TextField
                                                                 name="subPlainingName"
                                                                 title=""
@@ -170,6 +115,21 @@ export default function FormPlaining() {
                                                             />
                                                         </div>
                                                         <div className="md:w-3/12 pr-2">
+                                                            <TextSelect
+                                                                title=""
+                                                                options={teamsMember}
+                                                                onChange={(e) => {
+                                                                    setFieldValue("teamsMember", e.id);
+                                                                }}
+                                                                getOptionLabel={(x) => x.name}
+                                                                getOptionValue={(x) => x.id}
+                                                                name="teamsMember"
+                                                                placeholder="ผู้รับผิดชอบ"
+                                                                onBlur={handleBlur}
+                                                                value={teamsMember.filter((e) => e.id === values.teamsMember)}
+                                                            />
+                                                        </div>
+                                                        <div className="md:w-2/12 pr-2">
                                                             <DatePickerTH
                                                                 name="spStartDate"
                                                                 placeholder="วัน/เดือน/ปี"
@@ -189,7 +149,7 @@ export default function FormPlaining() {
                                                                 className="input-error"
                                                             />
                                                         </div>
-                                                        <div className="md:w-3/12">
+                                                        <div className="md:w-2/12">
                                                             <DatePickerTH
                                                                 name="spEndDate"
                                                                 placeholder="วัน/เดือน/ปี"
@@ -209,7 +169,14 @@ export default function FormPlaining() {
                                                                 className="input-error"
                                                             />
                                                         </div>
+                                                        <div>
+                                                            <button className="ml-1 btn btn-red btn-sm"
+                                                                onClick={() => remove(index)}>
+                                                                <i className="fas fa-trash-alt"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
+
                                                 ))}
 
                                             {/* ปุ่ม add */}
