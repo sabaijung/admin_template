@@ -1,5 +1,6 @@
 import React from "react"
 import { Formik, Form } from "formik";
+import { TextField } from "../../../components/TextField";
 
 export default function Authen() {
     return (
@@ -20,7 +21,14 @@ export default function Authen() {
                         <div className="px-12 pb-10 my-2">
                             <div className="w-full mb-2">
                                 <div className="py-2">
-                                    <input
+                                    <TextField
+                                        name="username"
+                                        title="ชื่อผู้ใช้งาน"
+                                        type="text"
+                                        onChange={handleChange}
+                                        value={values.plainingName}
+                                    />
+                                    {/* <input
                                         value={values.username}
                                         type="text"
                                         placeholder="อีเมล"
@@ -29,12 +37,19 @@ export default function Authen() {
                                             setFieldValue("username", e.target.value);
                                         }}
                                     />
-                                    {errors.username && touched.username ? <div className="mt-1 input-error">{errors.username}</div> : null}
+                                    {errors.username && touched.username ? <div className="mt-1 input-error">{errors.username}</div> : null} */}
                                 </div>
                             </div>
                             <div className="w-full mb-2">
                                 <div className="py-2">
-                                    <input
+                                    <TextField
+                                        name="password"
+                                        title="รหัสผ่าน"
+                                        type="password"
+                                        onChange={handleChange}
+                                        value={values.plainingName}
+                                    />
+                                    {/* <input
                                         value={values.password}
                                         type="password"
                                         id="input-pass"
@@ -43,7 +58,7 @@ export default function Authen() {
                                         onChange={(e) => {
                                             setFieldValue("password", e.target.value);
                                         }}
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                             <a href="/#" className="float-right mb-4 text-xs text-gray-500">
