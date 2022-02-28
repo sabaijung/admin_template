@@ -1,26 +1,61 @@
 import React from "react"
+import { Formik, Form } from "formik";
 
 export default function Authen() {
     return (
-        <div>
-            <div className="px-12 pb-10 my-2">
-                <div className="w-full mb-2">
-                    <div className="py-2">
-                        fsdfsd
+        <Formik
+            initialValues={{
+                username: "",
+                password: "",
+            }}
+            enableReinitialize={true}
+
+            onSubmit={(value) => {
+                // Authentication(value);
+            }}
+        >
+            {({ errors, touched, values, handleChange, setFieldValue }) => (
+                <Form>
+                    <div>
+                        <div className="px-12 pb-10 my-2">
+                            <div className="w-full mb-2">
+                                <div className="py-2">
+                                    <input
+                                        value={values.username}
+                                        type="text"
+                                        placeholder="อีเมล"
+                                        className={`input-login-2 ${errors.username && touched.username && "is-invalid bg-red-50"}`}
+                                        onChange={(e) => {
+                                            setFieldValue("username", e.target.value);
+                                        }}
+                                    />
+                                    {errors.username && touched.username ? <div className="mt-1 input-error">{errors.username}</div> : null}
+                                </div>
+                            </div>
+                            <div className="w-full mb-2">
+                                <div className="py-2">
+                                    <input
+                                        value={values.password}
+                                        type="password"
+                                        id="input-pass"
+                                        placeholder="รหัสผ่าน"
+                                        className={`input-login-2 ${errors.password && touched.password && "is-invalid bg-red-50"}`}
+                                        onChange={(e) => {
+                                            setFieldValue("password", e.target.value);
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <a href="/#" className="float-right mb-4 text-xs text-gray-500">
+                                ลืมรหัสผ่าน?
+                            </a>
+                            <button className="mr-1 btn btn-green btn-sm">
+                                เข้าสู่ระบบ
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div className="w-full mb-2">
-                    <div className="py-2">
-                        fsdfsd
-                    </div>
-                </div>
-                <a href="/#" className="float-right mb-4 text-xs text-gray-500">
-                    ลืมรหัสผ่าน?
-                </a>
-                <button type="submit" className="btn-login-2">
-                    fsdfsdf
-                </button>
-            </div>
-        </div>
+                </Form>
+            )}
+        </Formik>
     )
 }
