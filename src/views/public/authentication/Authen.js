@@ -1,6 +1,7 @@
 import React from "react"
 import { Formik, Form } from "formik";
 import { TextField } from "../../../components/TextField";
+import { ValidateAuthen } from "./ValidateAuthen"
 
 export default function Authen() {
     return (
@@ -10,7 +11,7 @@ export default function Authen() {
                 password: "",
             }}
             enableReinitialize={true}
-
+            validationSchema={ValidateAuthen}
             onSubmit={(value) => {
                 // Authentication(value);
             }}
