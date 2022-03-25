@@ -10,3 +10,12 @@ export async function GetUsers(currentPage, pageSize, search) {
     }
 }
 
+//call api สำหรับลบข้อมูลผู้ใช้งาน
+export async function DeleteUser(code) {
+    try {
+        const response = await Instance.delete("Users/DeleteUser/" + code);
+        return await response.data;
+    } catch (error) {
+        console.log("error", error);
+    }
+}
