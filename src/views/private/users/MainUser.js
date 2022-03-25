@@ -1,12 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ShowUser from "./ShowUser";
 import SVGAdd from "../../../assets/svg/SVGAdd";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import SVGSearch from "../../../assets/svg/SVGSearch";
 import { useHistory } from "react-router";
+import Swal from "sweetalert2";
+
+import { GetUsers } from "../../../services/Users.Service"
 
 export default function MainUser() {
   const history = useHistory();
+
+  const [data, setData] = useState([]);
+  const [pagin, setPagin] = useState({
+    currentPage: 1,
+    pageSize: 0,
+    TotalRows: 0,
+    TotalPages: 0,
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [keyword, setKeyword] = useState("");
+
+  function setCurrentPage(currentPage) {
+    loadData(currentPage, pagin.pageSize, keyword);
+  }
+
+  useEffect(() => {
+    loadData(1, 10, "", 0);
+  }, []);
+
+  async function loadData(currentPage, pageSize, search) {
+    setLoading(true);
+    let result = await GetUsers(currentPage, pageSize, search);
+    console.log("rs:" + result);
+    if (result) {
+      setData(result.data);
+      setPagin(result.pagin);
+      setLoading(false);
+    } else {
+      setData([]);
+      setPagin({
+        currentPage: 1,
+        pageSize: 0,
+        TotalRows: 0,
+        TotalPages: 0,
+      });
+    }
+  }
+
 
   return (
     <div>
@@ -58,7 +100,10 @@ export default function MainUser() {
       </div>
 
       <div className="mt-1">
-        <ShowUser />
+        <ShowUser
+          data={data}
+          pagin={pagin}
+        />
       </div>
     </div>
   );
