@@ -131,6 +131,9 @@ export default function MainUser() {
           returnPageNumber={(number) => {
             setCurrentPage(number);
           }}
+          returnDelete={(code) => {
+            deleteUser(code);
+          }}
         />
       </div>
     </div>
