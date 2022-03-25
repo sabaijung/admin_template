@@ -73,6 +73,7 @@ export default function Pagination({ onChange, currentPages, totalPage, totalRow
       onChange(currentPage - 1);
     }
   };
+
   return (
     <div id={nanoid()} className={"flex items-center justify-between py-3  " + (totalRow === 0 ? "hidden" : "")}>
       <div className="flex justify-between flex-1 sm:hidden">
