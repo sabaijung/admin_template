@@ -69,9 +69,16 @@ export default function MainUser() {
             timer: 1500,
             icon: "success",
           });
+
+          reset();
         }
       }
     });
+  }
+
+  function reset() {
+    loadData(1, 10, "");
+    setKeyword("");
   }
 
 
@@ -105,10 +112,19 @@ export default function MainUser() {
                 <input
                   className="field-input"
                   placeholder="ค้นหาชื่อผู้ใช้งาน"
+                  value={keyword}
+                  onChange={(e) => {
+                    setKeyword(e.target.value);
+                  }}
                 />
               </div>
               <div className="w-full pr-2 mb-2 md:w-1/4">
-                <button className="mr-1 btn btn-green btn-md">
+                <button className="mr-1 btn btn-green btn-md"
+                  onClick={() => {
+                    loadData(1, pagin.pageSize, keyword);
+                  }}
+                  disabled={loading}
+                >
                   {" "}
                   <SVGSearch color="white" />
                   ค้นหา
