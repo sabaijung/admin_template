@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
@@ -9,14 +9,40 @@ import { default as dtDistrict } from "../../../helper/JsonData/district.json";
 import { default as dtSubDistrict } from "../../../helper/JsonData/subdistrict.json";
 import { ValidateUser } from "./ValidateUser";
 
+/* import service */
+import { GetDepartment } from "../../../services/Department.Service";
+import { GetPosition } from "../../../services/Position.Service";
+
+
 export default function FormUser() {
+  const [department, setDataDepartment] = useState([]);
+  const [position, setDataPosition] = useState([]);
   const [dataProvince, setDataProvince] = useState(null);
   const [dataDistrict, setDataDistrict] = useState(null);
+
   const prefixTH = [
     { id: "1", name: "นาย" },
     { id: "2", name: "นาง" },
     { id: "3", name: "นางสาว" },
   ];
+
+  useEffect(() => {
+    LoadDepartment();
+  }, []);
+
+  async function LoadDepartment() {
+    let result = await GetDepartment();
+    if (result !== undefined) {
+      setDataDepartment(result);
+    } else {
+      setDataDepartment([]);
+    }
+  }
+
+  async function LoadPosition(departmentCode) {
+    let rsPosition = await GetPosition(departmentCode);
+    setDataPosition(rsPosition);
+  }
 
   return (
     <Formik
@@ -24,6 +50,8 @@ export default function FormUser() {
         prefix: "",
         firstName: "",
         lastName: "",
+        departmentCode: "",
+        positionCode: "",
         mobilePhone: "",
         address: "",
         province: "",
@@ -113,21 +141,35 @@ export default function FormUser() {
                 </div>
                 <div className="flex flex-wrap justify-start w-full">
                   <div className="pr-2 mt-2 md:w-1/3">
-                    <TextField
+                    <TextSelect
                       title="แผนก"
-                      name="department"
-                      type="text"
-                      onChange=""
-                      value=""
+                      options={department}
+                      onChange={(e) => {
+                        setFieldValue("departmentCode", e.departmentCode);
+                        LoadPosition(e.departmentCode);
+                      }}
+                      getOptionLabel={(x) => x.departmentName}
+                      getOptionValue={(x) => x.departmentCode}
+                      name="departmentCode"
+                      placeholder="แผนก"
+                      onBlur={handleBlur}
+                      value={department.filter((e) => e.departmentCode === values.departmentCode)}
+
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-1/3">
-                    <TextField
-                      name="position"
+                    <TextSelect
                       title="ตำแหน่ง"
-                      type="text"
-                      onChange=""
-                      value=""
+                      options={position}
+                      onChange={(e) => {
+                        setFieldValue("positionCode", e.positionCode);
+                      }}
+                      getOptionLabel={(x) => x.positionName}
+                      getOptionValue={(x) => x.positionCode}
+                      name="positionCode"
+                      onBlur={handleBlur}
+                      placeholder="ตำแหน่ง"
+                      value={position.filter((e) => e.positionCode === parseInt(values.positionCode))}
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-1/3">
@@ -244,9 +286,8 @@ export default function FormUser() {
                     <label className="field-label">รหัสผ่าน</label>
                     <div>
                       <input
-                        className={`field-input ${
-                          errors.password && touched.password && "is-invalid"
-                        }`}
+                        className={`field-input ${errors.password && touched.password && "is-invalid"
+                          }`}
                         id="password"
                         name="password"
                         type="password"
@@ -267,11 +308,10 @@ export default function FormUser() {
                     <label className="field-label">ยืนยันรหัสผ่าน</label>
                     <div>
                       <input
-                        className={`field-input ${
-                          errors.confirmPassword &&
+                        className={`field-input ${errors.confirmPassword &&
                           touched.confirmPassword &&
                           "is-invalid"
-                        }`}
+                          }`}
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
