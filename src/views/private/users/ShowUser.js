@@ -4,7 +4,7 @@ import SVGDelete from "../../../assets/svg/SVGDeleteV1";
 
 import Pagination from "../../../components/Pagination";
 
-export default function ShowUser({ data, pagin, returnPageNumber }) {
+export default function ShowUser({ data, pagin, returnPageNumber, returnDelete }) {
   return (
     <div className="flex flex-col">
       <div className="div-tb">
@@ -34,6 +34,9 @@ export default function ShowUser({ data, pagin, returnPageNumber }) {
                       <SVGEdit color="none" />
                     </button>
                     <button
+                      onClick={() => {
+                        returnDelete(item.code);
+                      }}
                     >
                       {" "}
                       <SVGDelete color="none" />
