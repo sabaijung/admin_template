@@ -6,7 +6,7 @@ import SVGSearch from "../../../assets/svg/SVGSearch";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 
-import { GetUsers } from "../../../services/Users.Service"
+import { GetUsers, DeleteUser } from "../../../services/Users.Service"
 
 export default function MainUser() {
   const history = useHistory();
@@ -47,6 +47,31 @@ export default function MainUser() {
         TotalPages: 0,
       });
     }
+  }
+
+  function deleteUser(code) {
+    Swal.fire({
+      title: "คุณต้องการลบข้อมูลนี้ใช่หรือไม่?",
+      showDenyButton: true,
+      confirmButtonText: "ตกลง",
+      denyButtonText: "ยกเลิก",
+      confirmButtonColor: "#2648C1",
+      denyButtonColor: "#6e7881",
+      icon: "question",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        let result = await DeleteUser(code);
+        if (result.statusCode === 200) {
+          Swal.fire({
+            title: "ลบข้อมูลสำเร็จ",
+            text: "",
+            showConfirmButton: false,
+            timer: 1500,
+            icon: "success",
+          });
+        }
+      }
+    });
   }
 
 
