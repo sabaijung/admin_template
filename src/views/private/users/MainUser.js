@@ -33,7 +33,7 @@ export default function MainUser() {
   async function loadData(currentPage, pageSize, search) {
     setLoading(true);
     let result = await GetUsers(currentPage, pageSize, search);
-    console.log("rs:" + result);
+
     if (result) {
       setData(result.data);
       setPagin(result.pagin);

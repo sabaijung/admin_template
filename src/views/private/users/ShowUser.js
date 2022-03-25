@@ -2,7 +2,8 @@ import React from "react";
 import SVGEdit from "../../../assets/svg/SVGEditV1";
 import SVGDelete from "../../../assets/svg/SVGDeleteV1";
 
-export default function ShowUser() {
+
+export default function ShowUser({ data, pagin }) {
   return (
     <div className="flex flex-col">
       <div className="div-tb">
@@ -18,28 +19,32 @@ export default function ShowUser() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            <tr>
-              <td className="tb-td">ทดสอบ</td>
-              <td className="tb-td">dsfd</td>
-              <td className="tb-td">dsfd</td>
-              <td className="tb-td">dsfd</td>
-              <td className="tb-td">dsfd</td>
-              <td className="tb-td">
-                <div className="flex justify-start item-center">
-                  <button>
-                    {" "}
-                    <SVGEdit color="none" />
-                  </button>
-                  <button>
-                    {" "}
-                    <SVGDelete color="none" />
-                  </button>
-                </div>
-              </td>
-            </tr>
+            {data.map((item, idx) => (
+              <tr key={idx}>
+                <td className="tb-td">{(pagin.currentPage - 1) * pagin.pageSize + (idx + 1)}</td>
+                <td className="tb-td">{item.code}</td>
+                <td className="tb-td">{item.name + " " + item.lastname}</td>
+                <td className="tb-td">{item.username}</td>
+                <td className="tb-td">{item.isused === "1" ? "ใช้งาน" : "ไม่ใช้งาน"}</td>
+                <td className="tb-td">
+                  <div className="flex justify-start item-center">
+                    <button>
+                      {" "}
+                      <SVGEdit color="none" />
+                    </button>
+                    <button
+                    >
+                      {" "}
+                      <SVGDelete color="none" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
+
     </div>
   );
 }
