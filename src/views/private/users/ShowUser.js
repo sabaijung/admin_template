@@ -2,8 +2,9 @@ import React from "react";
 import SVGEdit from "../../../assets/svg/SVGEditV1";
 import SVGDelete from "../../../assets/svg/SVGDeleteV1";
 
+import Pagination from "../../../components/Pagination";
 
-export default function ShowUser({ data, pagin }) {
+export default function ShowUser({ data, pagin, returnPageNumber }) {
   return (
     <div className="flex flex-col">
       <div className="div-tb">
@@ -45,6 +46,14 @@ export default function ShowUser({ data, pagin }) {
         </table>
       </div>
 
+      <Pagination
+        totalPage={pagin.totalPage}
+        onChange={async (page) => {
+          returnPageNumber(page);
+        }}
+        currentPages={pagin.currentPage}
+        totalRow={pagin.totalRow}
+      />
     </div>
   );
 }

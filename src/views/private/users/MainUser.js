@@ -27,7 +27,7 @@ export default function MainUser() {
   }
 
   useEffect(() => {
-    loadData(1, 10, "", 0);
+    loadData(1, 10, "");
   }, []);
 
   async function loadData(currentPage, pageSize, search) {
@@ -103,6 +103,9 @@ export default function MainUser() {
         <ShowUser
           data={data}
           pagin={pagin}
+          returnPageNumber={(number) => {
+            setCurrentPage(number);
+          }}
         />
       </div>
     </div>
