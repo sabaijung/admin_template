@@ -32,8 +32,8 @@ export default function FormUser() {
   ];
 
   useEffect(() => {
-    let code = new URLSearchParams(history.location.search).get("code");
-    console.log("code:" + code);
+    // let code = new URLSearchParams(history.location.search).get("code");
+    // console.log("code:" + code);
 
     LoadDepartment();
   }, []);
@@ -60,7 +60,7 @@ export default function FormUser() {
         icon: "success",
         title: 'บันทึกข้อมูลสำเร็จ',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 500,
       });
       history.push("/MainUser");
     } else {
@@ -94,8 +94,8 @@ export default function FormUser() {
       }}
       validationSchema={ValidateUser}
       onSubmit={async (values) => {
-        //console.log("v:" + JSON.stringify(values))
-        CreateUser(values);
+        console.log("v:" + JSON.stringify(values))
+        // CreateUser(values);
       }}
     >
       {({
@@ -331,7 +331,7 @@ export default function FormUser() {
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
                         <button type="button" className="focus:outline-none" id="show-Icon">
-                          <i class="fas fa-eye-slash"></i>
+                          <i className="fas fa-eye-slash"></i>
                         </button>
                       </div>
                       {errors.password && touched.password ? <div className="-mt-1 input-error">{errors.password}</div> : null}
@@ -354,7 +354,7 @@ export default function FormUser() {
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
                         <button type="button" className="focus:outline-none" id="show-IconConfirm" >
-                          <i class="fas fa-eye-slash"></i>
+                          <i className="fas fa-eye-slash"></i>
                         </button>
                       </div>
                       {errors.confirmPassword && touched.confirmPassword ? <div className="-mt-1 input-error">{errors.confirmPassword}</div> : null}
@@ -369,9 +369,13 @@ export default function FormUser() {
                         <input
                           type="radio"
                           id="one"
-                          className=""
+                          className={`${touched.role && errors.role && "is-invalid-radio"}`}
                           name="role"
-                          value=""
+                          value={1}
+                          checked={values.role === "1"}
+                          onChange={(e) => {
+                            setFieldValue("role", e.target.value);
+                          }}
                         />
                         <label htmlFor="one" className="cursor-pointer">
                           ผู้ดูแลระบบ
@@ -381,9 +385,13 @@ export default function FormUser() {
                         <input
                           type="radio"
                           id="two"
-                          className=""
+                          className={`${touched.role && errors.role && "is-invalid-radio"}`}
                           name="role"
-                          value=""
+                          onChange={(e) => {
+                            setFieldValue("role", e.target.value);
+                          }}
+                          value={2}
+                          checked={values.role === "2"}
                         />
                         <label htmlFor="two" className="cursor-pointer">
                           ผู้ใช้งาน
@@ -398,9 +406,13 @@ export default function FormUser() {
                         <input
                           type="radio"
                           id="IsUseone-1"
-                          className=""
+                          className={`${touched.isUse && errors.isUse && "is-invalid-radio"}`}
                           name="isUsed"
-                          value=""
+                          value={1}
+                          checked={values.isUse === "1"}
+                          onChange={(e) => {
+                            setFieldValue("isUsed", e.target.value);
+                          }}
                         />
                         <label htmlFor="IsUseone-1" className="cursor-pointer">
                           ใช้งาน
@@ -410,9 +422,13 @@ export default function FormUser() {
                         <input
                           id="IsUseone-2"
                           type="radio"
-                          className=""
+                          className={`${touched.isUse && errors.isUse && "is-invalid-radio"}`}
                           name="isUsed"
-                          value=""
+                          value={0}
+                          checked={values.isUse === "0"}
+                          onChange={(e) => {
+                            setFieldValue("isUsed", e.target.value);
+                          }}
                         />
                         <label htmlFor="IsUseone-2" className="cursor-pointer">
                           ไม่ใช้งาน
