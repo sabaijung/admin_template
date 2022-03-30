@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 import SVGSave from "../../../assets/svg/SVGSave";
 import SVGClockwise from "../../../assets/svg/SVGClockwise";
 import { TextSelect } from "../../../components/TextSelect";
@@ -12,9 +14,12 @@ import { ValidateUser } from "./ValidateUser";
 /* import service */
 import { GetDepartment } from "../../../services/Department.Service";
 import { GetPosition } from "../../../services/Position.Service";
-
+import { SaveUser } from "../../../services/Users.Service";
 
 export default function FormUser() {
+  const history = useHistory();
+
+  const [code, setCode] = useState(null);
   const [department, setDataDepartment] = useState([]);
   const [position, setDataPosition] = useState([]);
   const [dataProvince, setDataProvince] = useState(null);
@@ -27,6 +32,9 @@ export default function FormUser() {
   ];
 
   useEffect(() => {
+    let code = new URLSearchParams(history.location.search).get("code");
+    console.log("code:" + code);
+
     LoadDepartment();
   }, []);
 
@@ -43,6 +51,28 @@ export default function FormUser() {
     let rsPosition = await GetPosition(departmentCode);
     setDataPosition(rsPosition);
   }
+
+  const CreateUser = async (v) => {
+    let result = await SaveUser(v);
+    if (result.statusCode === 200) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: 'บันทึกข้อมูลสำเร็จ',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      history.push("/MainUser");
+    } else {
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: "บันทึกไม่ข้อมูลสำเร็จ",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
 
   return (
     <Formik
@@ -63,6 +93,10 @@ export default function FormUser() {
         confirmPassword: "",
       }}
       validationSchema={ValidateUser}
+      onSubmit={async (values) => {
+        //console.log("v:" + JSON.stringify(values))
+        CreateUser(values);
+      }}
     >
       {({
         errors,
@@ -79,7 +113,7 @@ export default function FormUser() {
                 <h1 className="text-blue-500">เพิ่มข้อมูลผู้ใช้งาน</h1>
               </div>
               <div className="flex justify-end mx-auto mt-2 md:w-1/2">
-                <button className="mr-1 btn btn-green btn-sm">
+                <button className="mr-1 btn btn-green btn-sm" type="submit">
                   <SVGSave color="white" /> &nbsp;บันทึก
                 </button>
                 <button className="mr-1 btn btn-gray btn-sm">
@@ -95,12 +129,12 @@ export default function FormUser() {
                 <div className="flex items-center justify-center w-full">
                   <label className="flex flex-col w-full border-2 border-gray-200 border-dashed rounded-md h-60 hover:bg-gray-50 hover:border-gray-300">
                     <div className="flex flex-col items-center justify-center pt-7">
-                      <img
+                      {/* <img
                         alt=""
                         src=""
                         className="w-40 h-40 rounded-full"
                         onError=""
-                      />
+                      /> */}
                     </div>
                   </label>
                 </div>
@@ -199,12 +233,12 @@ export default function FormUser() {
                       options={dtProvince.province}
                       onChange={(e) => {
                         if (e !== null) {
-                          setFieldValue("province", e.NameInThai);
+                          setFieldValue("province", e.Id);
                           setDataProvince(e.Id);
                         }
                       }}
                       value={dtProvince.province.filter(
-                        (e) => e.NameInThai === values.province
+                        (e) => e.Id === values.province
                       )}
                       onBlur={handleBlur}
                       getOptionLabel={(x) => x.NameInThai}
@@ -220,11 +254,11 @@ export default function FormUser() {
                         (x) => x.ProvinceId === dataProvince
                       )}
                       value={dtDistrict.district.filter(
-                        (e) => e.NameInThai === values.district
+                        (e) => e.Id === values.district
                       )}
                       onChange={(e) => {
                         if (e !== null) {
-                          setFieldValue("district", e.NameInThai);
+                          setFieldValue("district", e.Id);
                           setDataDistrict(e.Id);
                         }
                       }}
@@ -242,17 +276,17 @@ export default function FormUser() {
                         (x) => x.DistrictId === dataDistrict
                       )}
                       value={dtSubDistrict.subDistrict.filter(
-                        (e) => e.NameInThai === values.subDistrict
+                        (e) => e.Id === values.subDistrict
                       )}
                       onChange={(e) => {
                         if (e !== null) {
-                          setFieldValue("subDistrict", e.NameInThai);
+                          setFieldValue("subDistrict", e.Id);
                           setFieldValue("zipCode", e.ZipCode.toString());
                         }
                       }}
                       onBlur={handleBlur}
                       getOptionLabel={(x) => x.NameInThai}
-                      getOptionValue={(x) => x.NameInThai}
+                      getOptionValue={(x) => x.Id}
                       name="subDistrict"
                     />
                   </div>
@@ -296,12 +330,11 @@ export default function FormUser() {
                         value={values.password}
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
-                        <button
-                          type="button"
-                          className="focus:outline-none"
-                          id="show-Icon"
-                        ></button>
+                        <button type="button" className="focus:outline-none" id="show-Icon">
+                          <i class="fas fa-eye-slash"></i>
+                        </button>
                       </div>
+                      {errors.password && touched.password ? <div className="-mt-1 input-error">{errors.password}</div> : null}
                     </div>
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
@@ -320,12 +353,11 @@ export default function FormUser() {
                         value={values.confirmPassword}
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
-                        <button
-                          type="button"
-                          className="focus:outline-none"
-                          id="show-IconConfirm"
-                        ></button>
+                        <button type="button" className="focus:outline-none" id="show-IconConfirm" >
+                          <i class="fas fa-eye-slash"></i>
+                        </button>
                       </div>
+                      {errors.confirmPassword && touched.confirmPassword ? <div className="-mt-1 input-error">{errors.confirmPassword}</div> : null}
                     </div>
                   </div>
                 </div>
@@ -367,7 +399,7 @@ export default function FormUser() {
                           type="radio"
                           id="IsUseone-1"
                           className=""
-                          name="isUse"
+                          name="isUsed"
                           value=""
                         />
                         <label htmlFor="IsUseone-1" className="cursor-pointer">
@@ -379,7 +411,7 @@ export default function FormUser() {
                           id="IsUseone-2"
                           type="radio"
                           className=""
-                          name="isUse"
+                          name="isUsed"
                           value=""
                         />
                         <label htmlFor="IsUseone-2" className="cursor-pointer">
