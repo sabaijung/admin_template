@@ -11,7 +11,7 @@
 }
 
 .btn {
-  @apply inline-flex items-center block text-white uppercase rounded;
+  @apply inline-flex items-center block text-white uppercase rounded !important;
 }
 
 .btn-md {
@@ -23,11 +23,11 @@
 }
 
 .btn-green {
-  @apply bg-green-500;
+  @apply bg-green-500 !important;
 }
 
 .btn-green:hover {
-  @apply bg-green-600;
+  @apply bg-green-600 !important;
 }
 
 .btn-gray {
