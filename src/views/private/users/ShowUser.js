@@ -1,10 +1,12 @@
 import React from "react";
 import SVGEdit from "../../../assets/svg/SVGEditV1";
 import SVGDelete from "../../../assets/svg/SVGDeleteV1";
-
 import Pagination from "../../../components/Pagination";
+import { useHistory } from "react-router";
 
 export default function ShowUser({ data, pagin, returnPageNumber, returnDelete }) {
+  const history = useHistory();
+
   return (
     <div className="flex flex-col">
       <div className="div-tb">
@@ -29,7 +31,10 @@ export default function ShowUser({ data, pagin, returnPageNumber, returnDelete }
                 <td className="tb-td">{item.isused === "1" ? "ใช้งาน" : "ไม่ใช้งาน"}</td>
                 <td className="tb-td">
                   <div className="flex justify-start item-center">
-                    <button>
+                    <button
+                      onClick={() => {
+                        history.push("/MainUser/FormUser?code=" + item.code);
+                      }}>
                       {" "}
                       <SVGEdit color="none" />
                     </button>
