@@ -91,6 +91,8 @@ export default function FormUser() {
         username: "",
         password: "",
         confirmPassword: "",
+        role: "2",
+        isUsed: "1"
       }}
       validationSchema={ValidateUser}
       onSubmit={async (values) => {
@@ -406,10 +408,10 @@ export default function FormUser() {
                         <input
                           type="radio"
                           id="IsUseone-1"
-                          className={`${touched.isUse && errors.isUse && "is-invalid-radio"}`}
+                          className={`${touched.isUsed && errors.isUsed && "is-invalid-radio"}`}
                           name="isUsed"
                           value={1}
-                          checked={values.isUse === "1"}
+                          checked={values.isUsed === "1"}
                           onChange={(e) => {
                             setFieldValue("isUsed", e.target.value);
                           }}
@@ -422,10 +424,10 @@ export default function FormUser() {
                         <input
                           id="IsUseone-2"
                           type="radio"
-                          className={`${touched.isUse && errors.isUse && "is-invalid-radio"}`}
+                          className={`${touched.isUsed && errors.isUsed && "is-invalid-radio"}`}
                           name="isUsed"
                           value={0}
-                          checked={values.isUse === "0"}
+                          checked={values.isUsed === "0"}
                           onChange={(e) => {
                             setFieldValue("isUsed", e.target.value);
                           }}
