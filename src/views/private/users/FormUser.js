@@ -97,7 +97,7 @@ export default function FormUser() {
       validationSchema={ValidateUser}
       onSubmit={async (values) => {
         console.log("v:" + JSON.stringify(values))
-        // CreateUser(values);
+        CreateUser(values);
       }}
     >
       {({

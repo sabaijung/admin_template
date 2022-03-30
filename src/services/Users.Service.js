@@ -4,6 +4,7 @@ import Instance from "../helper/Axios";
 export async function GetUsers(currentPage, pageSize, search) {
     try {
         const response = await Instance.get("Users/GetUsers?currentPage=" + currentPage + "&pageSize=" + pageSize + "&search=" + search);
+        console.log("response:" + JSON.stringify(response));
         return await response.data;
     } catch (error) {
         console.log("error", error);
@@ -37,8 +38,8 @@ export async function SaveUser(v) {
         formData.append("Postcode", v.zipCode);
         formData.append("Username", v.username);
         formData.append("Password", v.password);
-        formData.append("Role", '1');
-        formData.append("Isused", '1');
+        formData.append("Role", v.role);
+        formData.append("Isused", v.isUsed);
         // formData.append("LogoProfile", v.logoProfile);
 
         const response = await Instance.post("Users/CreateUser", formData);
