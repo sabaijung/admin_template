@@ -4,7 +4,6 @@ import Instance from "../helper/Axios";
 export async function GetUsers(currentPage, pageSize, search) {
     try {
         const response = await Instance.get("Users/GetUsers?currentPage=" + currentPage + "&pageSize=" + pageSize + "&search=" + search);
-        console.log("response:" + JSON.stringify(response));
         return await response.data;
     } catch (error) {
         console.log("error", error);
@@ -40,12 +39,45 @@ export async function SaveUser(v) {
         formData.append("Password", v.password);
         formData.append("Role", v.role);
         formData.append("Isused", v.isUsed);
-        // formData.append("LogoProfile", v.logoProfile);
+        //formData.append("LogoProfile", v.logoProfile);
 
         const response = await Instance.post("Users/CreateUser", formData);
         return await response.data;
     } catch (error) {
         console.log("error", error);
     }
+}
 
+export async function UserDetail(code) {
+    try {
+        const response = await Instance.get("Users/GetUserDetail?code=" + code);
+        return await response.data;
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
+export async function UpdateUser(v, id) {
+    try {
+        let formData = new FormData();
+        formData.append("InitialCode", v.prefix);
+        formData.append("Name", v.firstName);
+        formData.append("LastName", v.lastName);
+        formData.append("DepartmentCode", v.departmentCode);
+        formData.append("PositionCode", v.positionCode);
+        formData.append("Mobilephone", v.mobilePhone);
+        formData.append("Address", v.address);
+        formData.append("DistrictCode", v.subDistrict);
+        formData.append("AmphurCode", v.district);
+        formData.append("ProvinceCode", v.province);
+        formData.append("Postcode", v.zipCode);
+        formData.append("Username", v.username);
+        formData.append("Password", v.password);
+        formData.append("Role", v.role);
+        formData.append("Isused", v.isUsed);
+        const response = await Instance.put("Users/UpdateUser/" + id, formData);
+        return await response.data;
+    } catch (error) {
+        console.log("error", error);
+    }
 }
