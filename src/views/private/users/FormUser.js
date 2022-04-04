@@ -14,12 +14,13 @@ import { ValidateUser } from "./ValidateUser";
 /* import service */
 import { GetDepartment } from "../../../services/Department.Service";
 import { GetPosition } from "../../../services/Position.Service";
-import { SaveUser } from "../../../services/Users.Service";
+import { SaveUser, UserDetail, UpdateUser } from "../../../services/Users.Service";
 
 export default function FormUser() {
   const history = useHistory();
 
   const [code, setCode] = useState(null);
+  const [dataUser, setDataUser] = useState([]);
   const [department, setDataDepartment] = useState([]);
   const [position, setDataPosition] = useState([]);
   const [dataProvince, setDataProvince] = useState(null);
@@ -32,11 +33,19 @@ export default function FormUser() {
   ];
 
   useEffect(() => {
-    // let code = new URLSearchParams(history.location.search).get("code");
-    // console.log("code:" + code);
-
+    let code = new URLSearchParams(history.location.search).get("code");
+    if (code !== null) {
+      setCode(code);
+      getUserDetail(code);
+    }
     LoadDepartment();
-  }, []);
+
+  }, [history.location.search]);
+
+  async function getUserDetail(code) {
+    let result = await UserDetail(code);
+    setDataUser(result.data);
+  }
 
   async function LoadDepartment() {
     let result = await GetDepartment();
@@ -74,30 +83,62 @@ export default function FormUser() {
     }
   };
 
+
+  const UpdateUser = async (values, prmCode) => {
+    let result = await UpdateUser(values, prmCode);
+    console.log("update");
+    if (result.statusCode === 200) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: 'ปรับปรุงข้อมูลเรียบร้อยแล้ว',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      history.push("/MainUser");
+    } else {
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: "ไม่สามารถแก้ไขข้อมูลได้",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  }
+
+
   return (
     <Formik
       initialValues={{
-        prefix: "",
-        firstName: "",
-        lastName: "",
-        departmentCode: "",
-        positionCode: "",
-        mobilePhone: "",
-        address: "",
-        province: "",
-        district: "",
-        subDistrict: "",
-        zipCode: "",
-        username: "",
-        password: "",
-        confirmPassword: "",
-        role: "2",
-        isUsed: "1"
+        prefix: code !== null ? dataUser.initialCode : "",
+        firstName: code !== null ? dataUser.name : "",
+        lastname: code !== null ? dataUser.lastname : "",
+        departmentCode: code !== null ? dataUser.departmentCode : "",
+        positionCode: code !== null ? dataUser.positionCode : "",
+        mobilePhone: code !== null ? dataUser.mobilephone : "",
+        address: code !== null ? dataUser.address : "",
+        province: code !== null ? dataUser.provinceCode : "",
+        district: code !== null ? dataUser.amphurCode : "",
+        subDistrict: code !== null ? dataUser.districtCode : "",
+        zipCode: code !== null ? dataUser.postcode : "",
+        username: code !== null ? dataUser.username : "",
+        password: code !== null ? dataUser.password : "",
+        confirmPassword: code !== null ? dataUser.password : "",
+        role: code !== null ? dataUser.role : "",
+        isUsed: code !== null ? dataUser.isused : "",
       }}
+      enableReinitialize={true}
       validationSchema={ValidateUser}
       onSubmit={async (values) => {
-        console.log("v:" + JSON.stringify(values))
-        CreateUser(values);
+        // console.log("v:" + JSON.stringify(values))
+        if (code === null) {
+          // CreateUser(values);
+          console.log("create");
+        } else {
+          console.log("update");
+          // UpdateUser(values, code);
+        }
       }}
     >
       {({
@@ -164,6 +205,8 @@ export default function FormUser() {
                     type="text"
                     onChange={handleChange}
                     value={values.firstName}
+                    errors={errors}
+                    touched={touched}
                   />
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
@@ -172,7 +215,9 @@ export default function FormUser() {
                     name="lastName"
                     type="text"
                     onChange={handleChange}
-                    value={values.lastName}
+                    value={values.lastname}
+                    errors={errors}
+                    touched={touched}
                   />
                 </div>
                 <div className="flex flex-wrap justify-start w-full">
@@ -182,6 +227,7 @@ export default function FormUser() {
                       options={department}
                       onChange={(e) => {
                         setFieldValue("departmentCode", e.departmentCode);
+                        console.log("dept:" + values.departmentCode);
                         LoadPosition(e.departmentCode);
                       }}
                       getOptionLabel={(x) => x.departmentName}
@@ -215,6 +261,8 @@ export default function FormUser() {
                       type="text"
                       onChange={handleChange}
                       value={values.mobilePhone}
+                      errors={errors}
+                      touched={touched}
                     />
                   </div>
                 </div>
@@ -226,6 +274,8 @@ export default function FormUser() {
                       type="text"
                       onChange={handleChange}
                       value={values.address}
+                      errors={errors}
+                      touched={touched}
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
@@ -302,6 +352,8 @@ export default function FormUser() {
                       title="รหัสไปรษณีย์"
                       maxLength="5"
                       readOnly
+                      errors={errors}
+                      touched={touched}
                     />
                   </div>
                 </div>
@@ -316,6 +368,8 @@ export default function FormUser() {
                       onBlur={handleBlur}
                       value={values.username}
                       placeholder="e@mail.com"
+                      errors={errors}
+                      touched={touched}
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
@@ -330,6 +384,7 @@ export default function FormUser() {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.password}
+
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
                         <button type="button" className="focus:outline-none" id="show-Icon">
@@ -352,6 +407,7 @@ export default function FormUser() {
                         type="password"
                         onChange={handleChange}
                         onBlur={handleBlur}
+
                         value={values.confirmPassword}
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
@@ -378,6 +434,7 @@ export default function FormUser() {
                           onChange={(e) => {
                             setFieldValue("role", e.target.value);
                           }}
+
                         />
                         <label htmlFor="one" className="cursor-pointer">
                           ผู้ดูแลระบบ
