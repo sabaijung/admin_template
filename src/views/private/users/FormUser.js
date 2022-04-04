@@ -34,7 +34,7 @@ export default function FormUser() {
 
   useEffect(() => {
     let code = new URLSearchParams(history.location.search).get("code");
-    if (code !== null) {
+    if (code != null) {
       setCode(code);
       getUserDetail(code);
     }
@@ -83,16 +83,17 @@ export default function FormUser() {
     }
   };
 
-  const UpdateUser = async (values, prmCode) => {
+  const Update = async (values, prmCode) => {
     let result = await UpdateUser(values, prmCode);
-    console.log("update");
+    // console.log("update");
+    //  console.log("up:" + JSON.stringify(result));
     if (result.statusCode === 200) {
       Swal.fire({
         position: "top-center",
         icon: "success",
         title: 'ปรับปรุงข้อมูลเรียบร้อยแล้ว',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 500,
       });
       history.push("/MainUser");
     } else {
@@ -106,37 +107,49 @@ export default function FormUser() {
     }
   }
 
+  function showPass() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+      document.getElementById("show-Icon").innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>';
+    } else {
+      x.type = "password";
+      document.getElementById("show-Icon").innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#1d4ed8"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>';
+    }
+  }
 
   return (
     <Formik
       initialValues={{
-        prefix: code !== null ? dataUser.initialCode : "",
-        name: code !== null ? dataUser.name : "",
-        lastname: code !== null ? dataUser.lastname : "",
-        departmentCode: code !== null ? dataUser.departmentCode : "",
-        positionCode: code !== null ? dataUser.positionCode : "",
-        mobilePhone: code !== null ? dataUser.mobilephone : "",
-        address: code !== null ? dataUser.address : "",
-        province: code !== null ? dataUser.provinceCode : "",
-        district: code !== null ? dataUser.amphurCode : "",
-        subDistrict: code !== null ? dataUser.districtCode : "",
-        zipCode: code !== null ? dataUser.postcode : "",
-        username: code !== null ? dataUser.username : "",
-        password: code !== null ? dataUser.password : "",
-        confirmPassword: code !== null ? dataUser.password : "",
-        role: code !== null ? dataUser.role : "",
-        isUsed: code !== null ? dataUser.isused : "",
+        prefix: code != null ? dataUser.initialCode : "",
+        name: code != null ? dataUser.name : "",
+        lastname: code != "" ? dataUser.lastname : "",
+        departmentCode: code != null ? dataUser.departmentCode : "",
+        positionCode: code != null ? dataUser.positionCode : "",
+        mobilePhone: code != null ? dataUser.mobilephone : "",
+        address: code != null ? dataUser.address : "",
+        province: code != null ? dataUser.provinceCode : "",
+        district: code != null ? dataUser.amphurCode : "",
+        subDistrict: code != null ? dataUser.districtCode : "",
+        zipCode: code != null ? dataUser.postcode : "",
+        username: code != null ? dataUser.username : "",
+        password: code != null ? dataUser.password : "",
+        confirmPassword: code != null ? dataUser.password : "",
+        role: code != null ? dataUser.role : "",
+        isUsed: code != null ? dataUser.isused : "",
       }}
       enableReinitialize={true}
-      validationSchema={ValidateUser}
+      // validationSchema={ValidateUser}
       onSubmit={async (values) => {
-        // console.log("v:" + JSON.stringify(values))
-        if (code === null) {
+        //   console.log("dt:" + JSON.stringify(values))
+        if (code == null) {
           CreateUser(values);
           console.log("create");
         } else {
           console.log("update");
-          UpdateUser(values, code);
+          Update(values, code);
         }
       }}
     >
@@ -199,23 +212,20 @@ export default function FormUser() {
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
                   <TextField
-                    name="name"
                     title="ชื่อ"
+                    name="name"
                     type="text"
+                    value={values.name || ""}
                     onChange={handleChange}
-                    value={values.name}
-                    onBlur={handleBlur}
                   />
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
                   <TextField
                     title="นามสกุล"
-                    name="lastName"
+                    name="lastname"
                     type="text"
+                    value={values.lastname || ""}
                     onChange={handleChange}
-                    value={values.lastname}
-                    errors={errors}
-                    touched={touched}
                   />
                 </div>
 
@@ -259,12 +269,13 @@ export default function FormUser() {
                       name="mobilePhone"
                       type="text"
                       onChange={handleChange}
-                      value={values.mobilePhone}
+                      value={values.mobilePhone || ""}
                       errors={errors}
                       touched={touched}
                     />
                   </div>
                 </div>
+
                 <div className="flex flex-wrap justify-start w-full">
                   <div className="pr-2 mt-2 md:w-4/12">
                     <TextField
@@ -272,9 +283,7 @@ export default function FormUser() {
                       name="address"
                       type="text"
                       onChange={handleChange}
-                      value={values.address}
-                      errors={errors}
-                      touched={touched}
+                      value={values.address || ""}
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
@@ -347,12 +356,10 @@ export default function FormUser() {
                       onBlur={handleBlur}
                       type="text"
                       name="zipCode"
-                      value={values.zipCode}
+                      value={values.zipCode || ""}
                       title="รหัสไปรษณีย์"
                       maxLength="5"
                       readOnly
-                      errors={errors}
-                      touched={touched}
                     />
                   </div>
                 </div>
@@ -365,10 +372,8 @@ export default function FormUser() {
                       type="text"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.username}
+                      value={values.username || ""}
                       placeholder="e@mail.com"
-                      errors={errors}
-                      touched={touched}
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-4/12">
@@ -382,11 +387,11 @@ export default function FormUser() {
                         type="password"
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={values.password}
+                        value={values.password || ""}
 
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
-                        <button type="button" className="focus:outline-none" id="show-Icon">
+                        <button type="button" className="focus:outline-none" id="show-Icon" onClick={showPass}>
                           <i className="fas fa-eye-slash"></i>
                         </button>
                       </div>
@@ -406,8 +411,7 @@ export default function FormUser() {
                         type="password"
                         onChange={handleChange}
                         onBlur={handleBlur}
-
-                        value={values.confirmPassword}
+                        value={values.confirmPassword || ""}
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
                         <button type="button" className="focus:outline-none" id="show-IconConfirm" >
