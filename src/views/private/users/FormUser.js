@@ -83,7 +83,6 @@ export default function FormUser() {
     }
   };
 
-
   const UpdateUser = async (values, prmCode) => {
     let result = await UpdateUser(values, prmCode);
     console.log("update");
@@ -112,7 +111,7 @@ export default function FormUser() {
     <Formik
       initialValues={{
         prefix: code !== null ? dataUser.initialCode : "",
-        firstName: code !== null ? dataUser.name : "",
+        name: code !== null ? dataUser.name : "",
         lastname: code !== null ? dataUser.lastname : "",
         departmentCode: code !== null ? dataUser.departmentCode : "",
         positionCode: code !== null ? dataUser.positionCode : "",
@@ -133,11 +132,11 @@ export default function FormUser() {
       onSubmit={async (values) => {
         // console.log("v:" + JSON.stringify(values))
         if (code === null) {
-          // CreateUser(values);
+          CreateUser(values);
           console.log("create");
         } else {
           console.log("update");
-          // UpdateUser(values, code);
+          UpdateUser(values, code);
         }
       }}
     >
@@ -200,13 +199,12 @@ export default function FormUser() {
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
                   <TextField
-                    name="firstName"
+                    name="name"
                     title="ชื่อ"
                     type="text"
                     onChange={handleChange}
-                    value={values.firstName}
-                    errors={errors}
-                    touched={touched}
+                    value={values.name}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <div className="pr-2 mt-2 md:w-2/5">
@@ -220,6 +218,7 @@ export default function FormUser() {
                     touched={touched}
                   />
                 </div>
+
                 <div className="flex flex-wrap justify-start w-full">
                   <div className="pr-2 mt-2 md:w-1/3">
                     <TextSelect
@@ -496,6 +495,7 @@ export default function FormUser() {
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>

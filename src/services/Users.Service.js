@@ -25,7 +25,7 @@ export async function SaveUser(v) {
     try {
         let formData = new FormData();
         formData.append("InitialCode", v.prefix);
-        formData.append("Name", v.firstName);
+        formData.append("Name", v.name);
         formData.append("LastName", v.lastName);
         formData.append("DepartmentCode", v.departmentCode);
         formData.append("PositionCode", v.positionCode);
@@ -61,7 +61,7 @@ export async function UpdateUser(v, id) {
     try {
         let formData = new FormData();
         formData.append("InitialCode", v.prefix);
-        formData.append("Name", v.firstName);
+        formData.append("Name", v.name);
         formData.append("LastName", v.lastName);
         formData.append("DepartmentCode", v.departmentCode);
         formData.append("PositionCode", v.positionCode);
