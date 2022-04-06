@@ -26,7 +26,7 @@ export async function SaveUser(v) {
         let formData = new FormData();
         formData.append("InitialCode", v.prefix);
         formData.append("Name", v.name);
-        formData.append("LastName", v.lastName);
+        formData.append("Lastname", v.lastname);
         formData.append("DepartmentCode", v.departmentCode);
         formData.append("PositionCode", v.positionCode);
         formData.append("Mobilephone", v.mobilePhone);
@@ -39,7 +39,7 @@ export async function SaveUser(v) {
         formData.append("Password", v.password);
         formData.append("Role", v.role);
         formData.append("Isused", v.isUsed);
-        //formData.append("LogoProfile", v.logoProfile);
+        formData.append("ImageProfile", v.imageProfile);
 
         const response = await Instance.post("Users/CreateUser", formData);
         return await response.data;
@@ -62,7 +62,7 @@ export async function UpdateUser(v, id) {
         let formData = new FormData();
         formData.append("InitialCode", v.prefix);
         formData.append("Name", v.name);
-        formData.append("LastName", v.lastName);
+        formData.append("Lastname", v.lastname);
         formData.append("DepartmentCode", v.departmentCode);
         formData.append("PositionCode", v.positionCode);
         formData.append("Mobilephone", v.mobilePhone);
@@ -75,6 +75,8 @@ export async function UpdateUser(v, id) {
         formData.append("Password", v.password);
         formData.append("Role", v.role);
         formData.append("Isused", v.isUsed);
+        formData.append("ImageProfile", v.imageProfile);
+
         const response = await Instance.put("Users/UpdateUser/" + id, formData);
         return await response.data;
     } catch (error) {
