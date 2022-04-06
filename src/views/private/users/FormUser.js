@@ -25,6 +25,7 @@ export default function FormUser() {
   const [position, setDataPosition] = useState([]);
   const [dataProvince, setDataProvince] = useState(null);
   const [dataDistrict, setDataDistrict] = useState(null);
+  const [hidImg, setHidImg] = useState(true);
 
   const prefixTH = [
     { id: "1", name: "นาย" },
@@ -44,7 +45,9 @@ export default function FormUser() {
 
   async function getUserDetail(code) {
     let result = await UserDetail(code);
+    console.log("userDetail:" + JSON.stringify(result.data));
     setDataUser(result.data);
+    LoadPosition(parseInt(result.data.departmentCode));
   }
 
   async function LoadDepartment() {
@@ -107,7 +110,7 @@ export default function FormUser() {
     }
   }
 
-  function showPass() {
+  function showPassword() {
     var x = document.getElementById("password");
     if (x.type === "password") {
       x.type = "text";
@@ -136,28 +139,30 @@ export default function FormUser() {
   return (
     <Formik
       initialValues={{
-        prefix: code != null ? dataUser.initialCode : "",
-        name: code != null ? dataUser.name : "",
-        lastname: code != "" ? dataUser.lastname : "",
-        departmentCode: code != null ? dataUser.departmentCode : "",
-        positionCode: code != null ? dataUser.positionCode : "",
-        mobilePhone: code != null ? dataUser.mobilephone : "",
-        address: code != null ? dataUser.address : "",
-        province: code != null ? dataUser.provinceCode : "",
-        district: code != null ? dataUser.amphurCode : "",
-        subDistrict: code != null ? dataUser.districtCode : "",
-        zipCode: code != null ? dataUser.postcode : "",
-        username: code != null ? dataUser.username : "",
-        password: code != null ? dataUser.password : "",
-        confirmPassword: code != null ? dataUser.password : "",
-        role: code != null ? dataUser.role : "",
-        isUsed: code != null ? dataUser.isused : "",
+        prefix: code !== null ? dataUser.initialCode : "",
+        name: code !== null ? dataUser.name : "",
+        lastname: code !== "" ? dataUser.lastname : "",
+        departmentCode: code !== null ? dataUser.departmentCode : "",
+        positionCode: code !== null ? dataUser.positionCode : "",
+        mobilePhone: code !== null ? dataUser.mobilephone : "",
+        address: code !== null ? dataUser.address : "",
+        province: code !== null ? dataUser.provinceCode : "",
+        district: code !== null ? dataUser.amphurCode : "",
+        subDistrict: code !== null ? dataUser.districtCode : "",
+        zipCode: code !== null ? dataUser.postcode : "",
+        username: code !== null ? dataUser.username : "",
+        password: code !== null ? dataUser.password : "",
+        confirmPassword: code !== null ? dataUser.password : "",
+        role: code !== null ? dataUser.role : "",
+        isUsed: code !== null ? dataUser.isused : "",
+        imageProfile: code !== null ? dataUser.imageProfile : "",
       }}
+
+      validationSchema={ValidateUser}
       enableReinitialize={true}
-      // validationSchema={ValidateUser}
       onSubmit={async (values) => {
-        //   console.log("dt:" + JSON.stringify(values))
-        if (code == null) {
+        console.log("dt:" + JSON.stringify(values))
+        if (code === null) {
           CreateUser(values);
           console.log("create");
         } else {
@@ -197,13 +202,28 @@ export default function FormUser() {
                 <div className="flex items-center justify-center w-full">
                   <label className="flex flex-col w-full border-2 border-gray-200 border-dashed rounded-md h-60 hover:bg-gray-50 hover:border-gray-300">
                     <div className="flex flex-col items-center justify-center pt-7">
-                      {/* <img
-                        alt=""
+                      <img
                         src=""
                         className="w-40 h-40 rounded-full"
-                        onError=""
-                      /> */}
+                      />
                     </div>
+                    <input
+                      className="hidden"
+                      type="file"
+                      onBlur={handleBlur}
+                      name="imageProfile"
+                      id="imageProfile"
+                      accept="jpeg,png"
+                      onChange={(e) => {
+                        if (e.target.files.length !== 0) {
+                          e.preventDefault();
+                          setHidImg(true);
+                          setFieldValue("file_name", e.target.files[0].name);
+                          setFieldValue("file_obj", e.target.files[0] !== undefined ? URL.createObjectURL(e.target.files[0]) : "");
+                          setFieldValue("imageProfile", e.currentTarget.files[0]);
+                        }
+                      }}
+                    />
                   </label>
                 </div>
               </div>
@@ -249,7 +269,6 @@ export default function FormUser() {
                       options={department}
                       onChange={(e) => {
                         setFieldValue("departmentCode", e.departmentCode);
-                        console.log("dept:" + values.departmentCode);
                         LoadPosition(e.departmentCode);
                       }}
                       getOptionLabel={(x) => x.departmentName}
@@ -257,14 +276,14 @@ export default function FormUser() {
                       name="departmentCode"
                       placeholder="แผนก"
                       onBlur={handleBlur}
-                      value={department.filter((e) => e.departmentCode === values.departmentCode)}
-
+                      value={department.filter((e) => e.departmentCode === parseInt(values.departmentCode))}
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-1/3">
                     <TextSelect
                       title="ตำแหน่ง"
                       options={position}
+                      value={position.filter((e) => e.positionCode === parseInt(values.positionCode))}
                       onChange={(e) => {
                         setFieldValue("positionCode", e.positionCode);
                       }}
@@ -273,7 +292,7 @@ export default function FormUser() {
                       name="positionCode"
                       onBlur={handleBlur}
                       placeholder="ตำแหน่ง"
-                      value={position.filter((e) => e.positionCode === parseInt(values.positionCode))}
+
                     />
                   </div>
                   <div className="pr-2 mt-2 md:w-1/3">
@@ -311,7 +330,7 @@ export default function FormUser() {
                         }
                       }}
                       value={dtProvince.province.filter(
-                        (e) => e.Id === values.province
+                        (e) => e.Id === parseInt(values.province)
                       )}
                       onBlur={handleBlur}
                       getOptionLabel={(x) => x.NameInThai}
@@ -327,7 +346,7 @@ export default function FormUser() {
                         (x) => x.ProvinceId === dataProvince
                       )}
                       value={dtDistrict.district.filter(
-                        (e) => e.Id === values.district
+                        (e) => e.Id === parseInt(values.district)
                       )}
                       onChange={(e) => {
                         if (e !== null) {
@@ -349,7 +368,7 @@ export default function FormUser() {
                         (x) => x.DistrictId === dataDistrict
                       )}
                       value={dtSubDistrict.subDistrict.filter(
-                        (e) => e.Id === values.subDistrict
+                        (e) => e.Id === parseInt(values.subDistrict)
                       )}
                       onChange={(e) => {
                         if (e !== null) {
@@ -404,7 +423,7 @@ export default function FormUser() {
 
                       />
                       <div className="flex justify-end m-2 mr-3 -mt-7">
-                        <button type="button" className="focus:outline-none" id="show-Icon" onClick={showPass}>
+                        <button type="button" className="focus:outline-none" id="show-Icon" onClick={showPassword}>
                           <i className="fas fa-eye-slash"></i>
                         </button>
                       </div>
