@@ -205,6 +205,9 @@ export default function FormUser() {
                       <img
                         src={values.file_obj !== undefined ? values.file_obj : `${dataUser.imageProfile}?${Date.now()}`}
                         className="w-40 h-40 rounded-full"
+                        onError={(e) => {
+                          setHidImg(false);
+                        }}
                       />
 
                       <svg className="w-12 h-12 mx-auto text-gray-400 mt-14" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
