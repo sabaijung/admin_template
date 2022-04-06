@@ -206,6 +206,7 @@ export default function FormUser() {
                         src=""
                         className="w-40 h-40 rounded-full"
                       />
+                      <p className="text-xs tracking-wider text-gray-400 group-hover:text-gray-600">เลือกไฟล์รูปภาพ (PNG, JPG)</p>
                     </div>
                     <input
                       className="hidden"
@@ -217,7 +218,7 @@ export default function FormUser() {
                       onChange={(e) => {
                         if (e.target.files.length !== 0) {
                           e.preventDefault();
-                          setHidImg(true);
+                          // setHidImg(true);
                           setFieldValue("file_name", e.target.files[0].name);
                           setFieldValue("file_obj", e.target.files[0] !== undefined ? URL.createObjectURL(e.target.files[0]) : "");
                           setFieldValue("imageProfile", e.currentTarget.files[0]);
