@@ -200,25 +200,30 @@ export default function FormUser() {
               <div className="pr-3 md:w-1/4">
                 <label className="field-label">รูปโปรไฟล์</label>
                 <div className="flex items-center justify-center w-full">
+
                   <label className="flex flex-col w-full border-2 border-gray-200 border-dashed rounded-md h-60 hover:bg-gray-50 hover:border-gray-300">
                     <div className="flex flex-col items-center justify-center pt-7">
-                      <img
-                        src={values.file_obj !== undefined ? values.file_obj : `${dataUser.imageProfile}?${Date.now()}`}
-                        className="w-40 h-40 rounded-full"
-                        onError={(e) => {
-                          setHidImg(false);
-                        }}
-                      />
-
-                      <svg className="w-12 h-12 mx-auto text-gray-400 mt-14" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                      {values.imageProfile !== "" && hidImg ? (
+                        <img
+                          src={values.file_obj !== undefined ? values.file_obj : `${dataUser.imageProfile}?${Date.now()}`}
+                          className="w-40 h-40 rounded-full"
+                          onError={(e) => {
+                            setHidImg(false);
+                          }}
                         />
-                      </svg>
-                      <p className="text-xs tracking-wider text-gray-400 group-hover:text-gray-600">เลือกไฟล์รูปภาพ (PNG, JPG)</p>
+                      ) : values.file_obj === undefined || !hidImg ? (
+                        <>
+                          <svg className="w-12 h-12 mx-auto text-gray-400 mt-14" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                            <path
+                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          <p className="text-xs tracking-wider text-gray-400 group-hover:text-gray-600">เลือกไฟล์รูปภาพ (PNG, JPG)</p>
+                        </>
+                      ) : null}
                     </div>
                     <input
                       className="hidden"
@@ -238,6 +243,9 @@ export default function FormUser() {
                       }}
                     />
                   </label>
+
+
+
                 </div>
               </div>
               <div className="flex flex-wrap justify-between md:w-3/4">
