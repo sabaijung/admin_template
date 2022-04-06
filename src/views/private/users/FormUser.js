@@ -203,7 +203,7 @@ export default function FormUser() {
                   <label className="flex flex-col w-full border-2 border-gray-200 border-dashed rounded-md h-60 hover:bg-gray-50 hover:border-gray-300">
                     <div className="flex flex-col items-center justify-center pt-7">
                       <img
-                        src=""
+                        src={values.file_obj !== undefined ? values.file_obj : `${dataUser.imageProfile}?${Date.now()}`}
                         className="w-40 h-40 rounded-full"
                       />
 
