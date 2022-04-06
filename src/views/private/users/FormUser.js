@@ -205,6 +205,7 @@ export default function FormUser() {
                     <div className="flex flex-col items-center justify-center pt-7">
                       {values.imageProfile !== "" && hidImg ? (
                         <img
+                          alt={values.file_obj !== undefined ? values.file_obj : `${dataUser.imageProfile}?${Date.now()}`}
                           src={values.file_obj !== undefined ? values.file_obj : `${dataUser.imageProfile}?${Date.now()}`}
                           className="w-40 h-40 rounded-full"
                           onError={(e) => {
@@ -235,7 +236,7 @@ export default function FormUser() {
                       onChange={(e) => {
                         if (e.target.files.length !== 0) {
                           e.preventDefault();
-                          // setHidImg(true);
+                          setHidImg(true);
                           setFieldValue("file_name", e.target.files[0].name);
                           setFieldValue("file_obj", e.target.files[0] !== undefined ? URL.createObjectURL(e.target.files[0]) : "");
                           setFieldValue("imageProfile", e.currentTarget.files[0]);
