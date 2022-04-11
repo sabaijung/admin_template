@@ -1,0 +1,6 @@
+.add_background {
+    height: 100vh;
+    width: 100% !important;
+    background-color: transparent;
+    background-image: linear-gradient(50deg, rgba(235, 245, 255, 255) 45%, transparent 45%), linear-gradient(-60deg, transparent 30%, transparent 30%);
+}
