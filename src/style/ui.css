@@ -1,5 +1,5 @@
 .div-tb {
-  @apply inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg;
+  @apply inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow rounded-lg;
 }
 
 .tb-td {
@@ -14,12 +14,16 @@
   @apply inline-flex items-center block text-white uppercase rounded !important;
 }
 
+.btn-lg {
+  @apply h-10 py-4 px-3 text-sm;
+}
+
 .btn-md {
   @apply pl-2 pr-2 text-sm h-9;
 }
 
 .btn-sm {
-  @apply p-2 text-xs;
+  @apply p-2 text-xs !important;
 }
 
 .btn-green {
@@ -47,7 +51,7 @@
 }
 
 .field-input {
-  @apply w-full px-2 py-1 text-gray-600 border border-gray-400 rounded outline-none h-9 focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
+  @apply w-full px-2 py-1 text-gray-600 border border-gray-400 rounded outline-none h-9;
 }
 
 .field-label {
@@ -61,6 +65,23 @@
 .is-invalid {
   @apply border border-red-600;
 }
+
 .is-valid {
   @apply border-2 border-red-600 rounded h-9;
+}
+
+.login-input {
+  @apply pl-2 pr-2 w-full h-10 text-gray-600 bg-transparent text-sm border-blue-800 border-b-2 outline-none;
+}
+
+.login-btn {
+  @apply inline-flex justify-center items-center text-white uppercase rounded-full w-full outline-none;
+}
+
+.btn-login {
+  @apply border border-blue-600 bg-blue-600 text-white border-blue-600;
+}
+
+.btn-login:hover {
+  @apply border border-blue-800 bg-blue-800 text-white border-blue-800;
 }
