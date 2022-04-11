@@ -1,4 +1,9 @@
-import PrivateLayout from "../layout/PrivateLayout";
+import PrivateLayout from "../layout/private/PrivateLayout"
+import PublicLayout from "../layout/public/PublicLayout";
+
+//public
+import Authen from "../views/public/authentication/Authen";
+import Login from "../views/public/login/login"
 
 //private
 import MainUser from "../views/private/users/MainUser";
@@ -10,7 +15,21 @@ import FormPlaining from "../views/private/plaining/FormPlaining";
 
 const Routes = [
   {
-    path: "/",
+    path: '/',
+    name: 'เข้าสู่ระบบ',
+    component: Login,
+    role: 0,
+    layout: PublicLayout,
+  },
+  {
+    path: "/Authentication",
+    name: "เข้าใช้งานระบบ",
+    component: Authen,
+    role: 0,
+    layout: PublicLayout,
+  },
+  {
+    path: "/MainUser",
     name: "ข้อมูลผู้ใช้งาน",
     component: MainUser,
     role: 0,
