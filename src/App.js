@@ -1,27 +1,18 @@
-import React, { Component } from "react";
-import { BrowserRouter, Switch } from "react-router-dom";
-import Routes from "./routes/Routes";
-import SwitchRoute from "./layout/SwitchLayout";
-import { nanoid } from "nanoid";
+import React, { Component } from 'react';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import Routes from './routes/Routes';
+import SwitchLayout from './layout/SwitchLayout';
+import { nanoid } from 'nanoid';
 import "./style/tailwind.css";
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          {Routes.map((prop) => {
-            return (
-              <SwitchRoute
-                exact
-                path={prop.path}
-                component={prop.component}
-                layout={prop.layout}
-                key={nanoid()}
-                {...this.props}
-              />
-            );
+          {Routes.filter((a) => a.role === (this.props.auth.users && this.props.auth.users !== 'undefined' ? 1 : 0)).map((prop) => {
+            return <SwitchLayout exact path={prop.path} component={prop.component} layout={prop.layout} key={nanoid()} {...this.props} pathNameTH={prop.name} />;
           })}
         </Switch>
       </BrowserRouter>
